@@ -1,0 +1,248 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---- Enums -----------------------------------------------------------------
+
+enum Role {
+  admin
+  teacher
+  parent
+  student
+}
+
+enum ArabicLevel {
+  Beginner
+  Intermediate
+  Advanced
+}
+
+enum Program {
+  Arabic
+  Quran
+}
+
+enum LessonStatus {
+  scheduled
+  completed
+  cancelled
+}
+
+enum HomeworkStatus {
+  pending
+  submitted
+  reviewed
+}
+
+enum ContentType {
+  text
+  image
+  video
+  pdf
+}
+
+enum SubscriptionStatus {
+  active
+  expired
+  cancelled
+}
+
+enum InvoiceStatus {
+  paid
+  pending
+  failed
+}
+
+// ---- Models ----------------------------------------------------------------
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  firstName    String?
+  lastName     String?
+  passwordHash String
+  phone        String?
+  language     String   @default("fr")
+  role         Role     @default(parent)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  students     Student[]
+  teacher      Teacher?
+  comments     Comment[]
+  subscription Subscription?
+}
+
+model Student {
+  id                  String       @id @default(cuid())
+  firstName           String
+  lastName            String
+  age                 Int
+  arabicLevelReading  ArabicLevel  @default(Beginner)
+  arabicLevelWriting  ArabicLevel  @default(Beginner)
+  arabicLevelSpeaking ArabicLevel?
+  notes               String       @default("")
+  createdAt           DateTime     @default(now())
+
+  parentId     String
+  parent       User                @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  submissions  Submission[]
+  participants LessonParticipant[]
+  enrollments  Enrollment[]
+}
+
+model Teacher {
+  id         String    @id @default(cuid())
+  initials   String
+  colorClass String    @default("bg-primary-100 text-primary-700")
+  createdAt  DateTime  @default(now())
+
+  userId       String    @unique
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialities Program[]
+  lessons      Lesson[]
+  homework     Homework[]
+  posts        Post[]
+}
+
+model Course {
+  id          String    @id @default(cuid())
+  name        String
+  level       Int
+  program     Program
+  description String    @default("")
+  createdAt   DateTime  @default(now())
+
+  homework    Homework[]
+  enrollments Enrollment[]
+}
+
+model Enrollment {
+  id         String   @id @default(cuid())
+  enrolledAt DateTime @default(now())
+
+  studentId String
+  courseId  String
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  course    Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, courseId])
+}
+
+model Homework {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  pdfUrl      String   @default("")
+  dueDate     DateTime
+  createdAt   DateTime @default(now())
+
+  courseId  String
+  teacherId String
+  course    Course    @relation(fields: [courseId], references: [id])
+  teacher   Teacher   @relation(fields: [teacherId], references: [id])
+
+  submissions Submission[]
+}
+
+model Submission {
+  id          String         @id @default(cuid())
+  fileName    String
+  fileSize    Int
+  fileType    String
+  comment     String         @default("")
+  status      HomeworkStatus @default(submitted)
+  submittedAt DateTime       @default(now())
+
+  homeworkId String
+  studentId  String
+  homework   Homework @relation(fields: [homeworkId], references: [id], onDelete: Cascade)
+  student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([homeworkId, studentId])
+}
+
+model Lesson {
+  id        String       @id @default(cuid())
+  program   Program
+  date      DateTime
+  time      String
+  status    LessonStatus @default(scheduled)
+  createdAt DateTime     @default(now())
+
+  teacherId    String
+  teacher      Teacher            @relation(fields: [teacherId], references: [id])
+  participants LessonParticipant[]
+}
+
+model LessonParticipant {
+  lessonId  String
+  studentId String
+  lesson    Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@id([lessonId, studentId])
+}
+
+model Post {
+  id          String      @id @default(cuid())
+  contentType ContentType @default(text)
+  text        String
+  mediaUrl    String?
+  fileName    String?
+  fileUrl     String?
+  tags        String[]
+  createdAt   DateTime    @default(now())
+
+  teacherId String
+  teacher   Teacher   @relation(fields: [teacherId], references: [id])
+  comments  Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  text      String
+  createdAt DateTime @default(now())
+
+  postId   String
+  authorId String
+  post     Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  planId               String
+  status               SubscriptionStatus @default(active)
+  startDate            DateTime
+  renewalDate          DateTime
+  stripeSubscriptionId String?
+  stripeCustomerId     String?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  userId   String    @unique
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invoices Invoice[]
+}
+
+model Invoice {
+  id              String        @id @default(cuid())
+  date            DateTime      @default(now())
+  amount          Float
+  currency        String        @default("€")
+  plan            String
+  status          InvoiceStatus @default(paid)
+  stripeInvoiceId String?
+  createdAt       DateTime      @default(now())
+
+  subscriptionId String
+  userId         String
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+}
