@@ -119,8 +119,33 @@ model Course {
   description String    @default("")
   createdAt   DateTime  @default(now())
 
+  // ---- Catalogue / theme-browse fields (dashboard courses feature) -------
+  // Keep `name` for legacy homework/schedule consumers; `title` is the
+  // user-facing display title shown in the themed catalogue.
+  title       String    @default("")
+  duration    String    @default("")
+  levelLabel  String    @default("Beginner")
+
+  themeId     String?
+  theme       Theme?    @relation(fields: [themeId], references: [id], onDelete: SetNull)
+
   homework    Homework[]
   enrollments Enrollment[]
+
+  @@index([themeId])
+}
+
+/// Course theme (high-level category: Arabic, Quran, Islam).
+/// `name` is the URL-safe slug and is validated by Zod before any query.
+model Theme {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  title       String
+  description String   @default("")
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  courses     Course[]
 }
 
 model Enrollment {

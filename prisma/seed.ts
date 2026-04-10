@@ -26,72 +26,228 @@ async function hash(plaintext: string): Promise<string> {
 async function main() {
   console.log("🌱 Seeding database...");
 
+  // ---- Themes --------------------------------------------------------------
+  // URL slug lives in `name`; `title` is the display label.
+  const themeArabic = await prisma.theme.upsert({
+    where: { name: "arabic" },
+    update: {},
+    create: {
+      name: "arabic",
+      title: "Arabic",
+      description:
+        "Language learning — reading, writing, and speaking Modern Standard Arabic.",
+      sortOrder: 1,
+    },
+  });
+  const themeQuran = await prisma.theme.upsert({
+    where: { name: "quran" },
+    update: {},
+    create: {
+      name: "quran",
+      title: "Quran",
+      description: "Recitation (Tajwid) and structured memorization (Hifz) programs.",
+      sortOrder: 2,
+    },
+  });
+  const themeIslam = await prisma.theme.upsert({
+    where: { name: "islam" },
+    update: {},
+    create: {
+      name: "islam",
+      title: "Islam",
+      description: "General Islamic knowledge — Aqidah, Fiqh, Seerah, and ethics.",
+      sortOrder: 3,
+    },
+  });
+  console.log("  ✓ Themes: arabic, quran, islam");
+
   // ---- Courses -------------------------------------------------------------
   const courses = await Promise.all([
     prisma.course.upsert({
       where: { id: "course_arabic_1" },
-      update: {},
+      update: {
+        title: "Arabic Level 1 — Alphabet & Sounds",
+        duration: "8 weeks",
+        levelLabel: "Beginner",
+        themeId: themeArabic.id,
+      },
       create: {
         id: "course_arabic_1",
         name: "Arabic Level 1",
         level: 1,
         program: "Arabic",
         description: "Introduction to the Arabic alphabet and basic vocabulary.",
+        title: "Arabic Level 1 — Alphabet & Sounds",
+        duration: "8 weeks",
+        levelLabel: "Beginner",
+        themeId: themeArabic.id,
       },
     }),
     prisma.course.upsert({
       where: { id: "course_arabic_2" },
-      update: {},
+      update: {
+        title: "Arabic Level 2 — Reading Fluency",
+        duration: "10 weeks",
+        levelLabel: "Beginner",
+        themeId: themeArabic.id,
+      },
       create: {
         id: "course_arabic_2",
         name: "Arabic Level 2",
         level: 2,
         program: "Arabic",
         description: "Reading sentences and expanding vocabulary.",
+        title: "Arabic Level 2 — Reading Fluency",
+        duration: "10 weeks",
+        levelLabel: "Beginner",
+        themeId: themeArabic.id,
       },
     }),
     prisma.course.upsert({
       where: { id: "course_arabic_3" },
-      update: {},
+      update: {
+        title: "Arabic Level 3 — Grammar Foundations",
+        duration: "12 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeArabic.id,
+      },
       create: {
         id: "course_arabic_3",
         name: "Arabic Level 3",
         level: 3,
         program: "Arabic",
         description: "Short stories and basic grammar.",
+        title: "Arabic Level 3 — Grammar Foundations",
+        duration: "12 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeArabic.id,
       },
     }),
     prisma.course.upsert({
       where: { id: "course_arabic_4" },
-      update: {},
+      update: {
+        title: "Arabic Level 4 — Conversation",
+        duration: "10 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeArabic.id,
+      },
       create: {
         id: "course_arabic_4",
         name: "Arabic Level 4",
         level: 4,
         program: "Arabic",
         description: "Intermediate reading, writing, and conversation.",
+        title: "Arabic Level 4 — Conversation",
+        duration: "10 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeArabic.id,
       },
     }),
     prisma.course.upsert({
       where: { id: "course_quran_1" },
-      update: {},
+      update: {
+        title: "Tajwid Basics",
+        duration: "8 weeks",
+        levelLabel: "Beginner",
+        themeId: themeQuran.id,
+      },
       create: {
         id: "course_quran_1",
         name: "Quran Level 1",
         level: 1,
         program: "Quran",
         description: "Noorani Qaida and basic Tajweed rules.",
+        title: "Tajwid Basics",
+        duration: "8 weeks",
+        levelLabel: "Beginner",
+        themeId: themeQuran.id,
       },
     }),
     prisma.course.upsert({
       where: { id: "course_quran_2" },
-      update: {},
+      update: {
+        title: "Hifz — Juz Amma",
+        duration: "16 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeQuran.id,
+      },
       create: {
         id: "course_quran_2",
         name: "Quran Level 2",
         level: 2,
         program: "Quran",
         description: "Memorisation of short surahs with correct Tajweed.",
+        title: "Hifz — Juz Amma",
+        duration: "16 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeQuran.id,
+      },
+    }),
+    // ---- Islam theme courses (catalogue-only; program kept as Arabic
+    //      because the existing Program enum has no Islam member — these
+    //      rows are not used by Homework/Schedule, only by the themed
+    //      catalogue page, so `program` is a legacy placeholder here.)
+    prisma.course.upsert({
+      where: { id: "course_islam_1" },
+      update: {
+        title: "Pillars of Islam",
+        duration: "6 weeks",
+        levelLabel: "Beginner",
+        themeId: themeIslam.id,
+        description: "An accessible introduction to the five pillars and core beliefs.",
+      },
+      create: {
+        id: "course_islam_1",
+        name: "Pillars of Islam",
+        level: 1,
+        program: "Arabic",
+        description: "An accessible introduction to the five pillars and core beliefs.",
+        title: "Pillars of Islam",
+        duration: "6 weeks",
+        levelLabel: "Beginner",
+        themeId: themeIslam.id,
+      },
+    }),
+    prisma.course.upsert({
+      where: { id: "course_islam_2" },
+      update: {
+        title: "Seerah — Life of the Prophet ﷺ",
+        duration: "10 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeIslam.id,
+        description: "A chronological study of the Prophet's biography.",
+      },
+      create: {
+        id: "course_islam_2",
+        name: "Seerah",
+        level: 2,
+        program: "Arabic",
+        description: "A chronological study of the Prophet's biography.",
+        title: "Seerah — Life of the Prophet ﷺ",
+        duration: "10 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeIslam.id,
+      },
+    }),
+    prisma.course.upsert({
+      where: { id: "course_islam_3" },
+      update: {
+        title: "Fiqh of Worship",
+        duration: "10 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeIslam.id,
+        description: "Practical jurisprudence of purification, prayer, and fasting.",
+      },
+      create: {
+        id: "course_islam_3",
+        name: "Fiqh of Worship",
+        level: 2,
+        program: "Arabic",
+        description: "Practical jurisprudence of purification, prayer, and fasting.",
+        title: "Fiqh of Worship",
+        duration: "10 weeks",
+        levelLabel: "Intermediate",
+        themeId: themeIslam.id,
       },
     }),
   ]);
