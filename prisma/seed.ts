@@ -26,6 +26,23 @@ async function hash(plaintext: string): Promise<string> {
 async function main() {
   console.log("🌱 Seeding database...");
 
+  // ---- Themes --------------------------------------------------------------
+  // `name` is the URL-safe slug; `title` is the display label.
+  const themeSeeds = [
+    { name: "arabic", title: "Arabic", description: "Letters, words & stories", sortOrder: 1 },
+    { name: "islamic", title: "Islamic", description: "Values, stories & duas", sortOrder: 2 },
+    { name: "quran", title: "Quran", description: "Memorize with Tajweed", sortOrder: 3 },
+    { name: "others", title: "Others", description: "Games, crafts & more", sortOrder: 4 },
+  ];
+  for (const t of themeSeeds) {
+    await prisma.theme.upsert({
+      where: { name: t.name },
+      update: { title: t.title, description: t.description, sortOrder: t.sortOrder },
+      create: t,
+    });
+  }
+  console.log("  ✓ Themes seeded");
+
   // ---- Courses -------------------------------------------------------------
   const courses = await Promise.all([
     prisma.course.upsert({
