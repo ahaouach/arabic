@@ -120,7 +120,7 @@ export default async function ThemeCoursesPage({ params }: PageProps) {
         </nav>
       )}
 
-      <CoursesList courses={theme.courses} />
+      <CoursesList courses={theme.courses} themeSlug={theme.slug} />
     </div>
   );
 }

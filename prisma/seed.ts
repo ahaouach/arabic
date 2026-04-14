@@ -14,6 +14,7 @@
 
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { audioUrlFor } from "../lib/audio";
 
 const prisma = new PrismaClient();
 
@@ -251,6 +252,407 @@ async function main() {
       },
     }),
   ]);
+
+  // ---- Level slugs (used as URL segments: /courses/<theme>/<slug>) -------
+  const courseSlugs: Record<string, string> = {
+    course_arabic_1: "level-1",
+    course_arabic_2: "level-2",
+    course_arabic_3: "level-3",
+    course_arabic_4: "level-4",
+    course_quran_1: "level-1",
+    course_quran_2: "level-2",
+    course_islam_1: "level-1",
+    course_islam_2: "level-2",
+    course_islam_3: "level-3",
+  };
+  for (const [id, slug] of Object.entries(courseSlugs)) {
+    await prisma.course.update({ where: { id }, data: { slug } });
+  }
+  console.log("  ✓ Level slugs assigned");
+
+  // ---- Arabic Level 1 — interactive lessons (page = lesson) ---------------
+  // Each entry mirrors one page of the source primer (Tome 1, ages 3–5).
+  // Content is authored internally — the PDF is NEVER fetched at runtime.
+  type LessonSeed = {
+    id: string;
+    orderIndex: number;
+    title: string;
+    description: string;
+    steps: object[];
+  };
+
+  // Bilingual consigne shared by the four `cours` pages.
+  const consigneFr = "Écoute et répète";
+  const consigneAr = "اِسْتَمِعْ وَكَرِّرْ";
+  const consigneAudioUrl = audioUrlFor(consigneAr);
+
+  const arabicLevel1Lessons: LessonSeed[] = [
+    // ---------- Page 1 — Les Nombres (1 à 5) ----------
+    {
+      id: "lesson_arabic_1_p1",
+      orderIndex: 1,
+      title: "Page 1 — Les Nombres (1 à 5)",
+      description: "Écoute et répète les nombres de 1 à 5 en arabe.",
+      steps: [
+        {
+          type: "intro",
+          title: "Les Nombres (1 à 5)",
+          text: `${consigneFr} — ${consigneAr}`,
+          audioUrl: consigneAudioUrl,
+        },
+        {
+          type: "vocab",
+          consigneFr,
+          consigneAr,
+          audioUrl: consigneAudioUrl,
+          items: [
+            { label: "1", ar: "وَاحِد",   emoji: "☝️",  audioUrl: audioUrlFor("وَاحِد") },
+            { label: "2", ar: "اِثْنَان",  emoji: "✌️",  audioUrl: audioUrlFor("اِثْنَان") },
+            { label: "3", ar: "ثَلَاثَة",  emoji: "🤟",  audioUrl: audioUrlFor("ثَلَاثَة") },
+            { label: "4", ar: "أَرْبَعَة", emoji: "🖖",  audioUrl: audioUrlFor("أَرْبَعَة") },
+            { label: "5", ar: "خَمْسَة",  emoji: "🖐️",  audioUrl: audioUrlFor("خَمْسَة") },
+          ],
+        },
+        { type: "completion", message: "Super ! Tu connais les nombres de 1 à 5 ! 🎉" },
+      ],
+    },
+
+    // ---------- Page 2 — Les Nombres (6 à 10) ----------
+    {
+      id: "lesson_arabic_1_p2",
+      orderIndex: 2,
+      title: "Page 2 — Les Nombres (6 à 10)",
+      description: "Écoute et répète les nombres de 6 à 10 en arabe.",
+      steps: [
+        {
+          type: "intro",
+          title: "Les Nombres (6 à 10)",
+          text: `${consigneFr} — ${consigneAr}`,
+          audioUrl: consigneAudioUrl,
+        },
+        {
+          type: "vocab",
+          consigneFr,
+          consigneAr,
+          audioUrl: consigneAudioUrl,
+          items: [
+            { label: "6",  ar: "سِتَّة",     emoji: "🖐️☝️", audioUrl: audioUrlFor("سِتَّة") },
+            { label: "7",  ar: "سَبْعَة",    emoji: "🖐️✌️", audioUrl: audioUrlFor("سَبْعَة") },
+            { label: "8",  ar: "ثَمَانِيَة", emoji: "🖐️🤟", audioUrl: audioUrlFor("ثَمَانِيَة") },
+            { label: "9",  ar: "تِسْعَة",    emoji: "🖐️🖖", audioUrl: audioUrlFor("تِسْعَة") },
+            { label: "10", ar: "عَشَرَة",    emoji: "🖐️🖐️", audioUrl: audioUrlFor("عَشَرَة") },
+          ],
+        },
+        { type: "completion", message: "Bravo ! Tu comptes jusqu'à 10 ! 🎉" },
+      ],
+    },
+
+    // ---------- Page 3 — Les Couleurs ----------
+    {
+      id: "lesson_arabic_1_p3",
+      orderIndex: 3,
+      title: "Page 3 — Les Couleurs",
+      description: "Écoute et répète les couleurs en arabe.",
+      steps: [
+        {
+          type: "intro",
+          title: "Les Couleurs",
+          text: `${consigneFr} — ${consigneAr}`,
+          audioUrl: consigneAudioUrl,
+        },
+        {
+          type: "vocab",
+          consigneFr,
+          consigneAr,
+          audioUrl: consigneAudioUrl,
+          items: [
+            { fr: "Rouge",  ar: "أَحْمَر",      emoji: "🟥", audioUrl: audioUrlFor("أَحْمَر") },
+            { fr: "Jaune",  ar: "أَصْفَر",      emoji: "🟨", audioUrl: audioUrlFor("أَصْفَر") },
+            { fr: "Bleu",   ar: "أَزْرَق",      emoji: "🟦", audioUrl: audioUrlFor("أَزْرَق") },
+            { fr: "Vert",   ar: "أَخْضَر",      emoji: "🟩", audioUrl: audioUrlFor("أَخْضَر") },
+            { fr: "Rose",   ar: "وَرْدِيّ",      emoji: "🌸", audioUrl: audioUrlFor("وَرْدِيّ") },
+            { fr: "Violet", ar: "بَنَفْسَجِيّ",  emoji: "🟣", audioUrl: audioUrlFor("بَنَفْسَجِيّ") },
+            { fr: "Orange", ar: "بُرْتُقَالِيّ",  emoji: "🟧", audioUrl: audioUrlFor("بُرْتُقَالِيّ") },
+            { fr: "Marron", ar: "بُنِّيّ",       emoji: "🟫", audioUrl: audioUrlFor("بُنِّيّ") },
+            { fr: "Noir",   ar: "أَسْوَد",      emoji: "⬛", audioUrl: audioUrlFor("أَسْوَد") },
+            { fr: "Blanc",  ar: "أَبْيَض",      emoji: "⬜", audioUrl: audioUrlFor("أَبْيَض") },
+          ],
+        },
+        { type: "completion", message: "Bravo ! Tu connais 10 couleurs ! 🌈" },
+      ],
+    },
+
+    // ---------- Page 4 — Les Formes ----------
+    {
+      id: "lesson_arabic_1_p4",
+      orderIndex: 4,
+      title: "Page 4 — Les Formes",
+      description: "Écoute et répète les formes géométriques en arabe.",
+      steps: [
+        {
+          type: "intro",
+          title: "Les Formes",
+          text: `${consigneFr} — ${consigneAr}`,
+          audioUrl: consigneAudioUrl,
+        },
+        {
+          type: "vocab",
+          consigneFr,
+          consigneAr,
+          audioUrl: consigneAudioUrl,
+          items: [
+            { fr: "Triangle",  ar: "مُثَلَّث",   emoji: "🔺", audioUrl: audioUrlFor("مُثَلَّث") },
+            { fr: "Carré",     ar: "مُرَبَّع",   emoji: "⬛", audioUrl: audioUrlFor("مُرَبَّع") },
+            { fr: "Cercle",    ar: "دَائِرَة",  emoji: "🔴", audioUrl: audioUrlFor("دَائِرَة") },
+            { fr: "Rectangle", ar: "مُسْتَطِيل", emoji: "▭",  audioUrl: audioUrlFor("مُسْتَطِيل") },
+          ],
+        },
+        { type: "completion", message: "Super ! Tu connais les 4 formes ! ⭐" },
+      ],
+    },
+
+    // ---------- Page 5 — Matching (relie chaque carré à son jumeau) ----------
+    // PDF: 4 pairs shown on page 5 → vert, noir, rouge, bleu
+    {
+      id: "lesson_arabic_1_p5",
+      orderIndex: 5,
+      title: "Page 5 — Relie les carrés de même couleur",
+      description:
+        "Relie chaque carré avec celui qui a la même couleur — et nomme-la !",
+      steps: [
+        {
+          type: "intro",
+          title: "Relie les couleurs",
+          text:
+            "Je relie chaque carré avec celui qui a la même couleur et je la nomme. أربطُ كُلَّ مُرَبَّعٍ بالْمُرَبَّعِ الَّذِي لَهُ نَفْسُ اللَّوْنِ وَأُسَمِّيهِ",
+          audioUrl: audioUrlFor(
+            "أربطُ كُلَّ مُرَبَّعٍ بالْمُرَبَّعِ الَّذِي لَهُ نَفْسُ اللَّوْنِ وَأُسَمِّيهِ"
+          ),
+        },
+        {
+          type: "exercise",
+          exerciseType: "match",
+          id: "p5_match",
+          question:
+            "Relie chaque carré à celui de la même couleur — أَرْبِطْ كُلَّ مُرَبَّعٍ بِالْمُرَبَّعِ الَّذِي لَهُ نَفْسُ اللَّوْنِ",
+          // Four colours exactly as shown on PDF page 5.
+          pairs: [
+            { letter: "🟩", word: "🟩" }, // vert
+            { letter: "⬛", word: "⬛" }, // noir
+            { letter: "🟥", word: "🟥" }, // rouge
+            { letter: "🟦", word: "🟦" }, // bleu
+          ],
+          points: 25,
+        },
+        { type: "completion", message: "Toutes les couleurs sont reliées ! 🌈" },
+      ],
+    },
+
+    // ---------- Page 6 — Tracing (repasser sur des carrés) ----------
+    {
+      id: "lesson_arabic_1_p6",
+      orderIndex: 6,
+      title: "Page 6 — Trace les carrés",
+      description: "Repasse sur les pointillés pour tracer des carrés.",
+      steps: [
+        {
+          type: "intro",
+          title: "Trace les carrés",
+          text: "Je relie en repassant sur les pointillés pour dessiner des carrés. أربط لأرسُمَ مُرَبَّعَاتٍ كَبِيرَة",
+          audioUrl: audioUrlFor("أربط لأرسُمَ مُرَبَّعَاتٍ كَبِيرَة"),
+        },
+        {
+          type: "exercise",
+          exerciseType: "drawing",
+          id: "p6_trace",
+          instruction:
+            "Repasse sur le carré avec ton doigt — أَرْبِطْ لِأَرْسُمَ مُرَبَّعَاتٍ كَبِيرَة",
+          letter: "⬛",
+          guide: "Suis le contour estompé du carré.",
+          points: 25,
+        },
+        { type: "completion", message: "Superbe carré ! ✍️" },
+      ],
+    },
+
+    // ---------- Page 7 — Selection cible (entoure les voitures rouges) ----------
+    // PDF page 7 shows 6 cars — 3 red and 3 non-red.
+    {
+      id: "lesson_arabic_1_p7",
+      orderIndex: 7,
+      title: "Page 7 — Trouve les voitures rouges",
+      description:
+        "Sélectionne toutes les voitures rouges — et seulement celles-là.",
+      steps: [
+        {
+          type: "intro",
+          title: "Les voitures rouges",
+          text:
+            "J'entoure les voitures rouges. أَضَعُ السَّيَّارَاتِ الْحَمْرَاءَ فِي دَائِرَة",
+          audioUrl: audioUrlFor("أَضَعُ السَّيَّارَاتِ الْحَمْرَاءَ فِي دَائِرَة"),
+        },
+        {
+          type: "exercise",
+          exerciseType: "multi_select",
+          id: "p7_cars",
+          question:
+            "Clique sur toutes les voitures rouges — أَضَعُ السَّيَّارَاتِ الْحَمْرَاءَ فِي دَائِرَة",
+          // 6 cars — 3 red (target) + 3 non-red distractors, matching PDF.
+          options: [
+            { id: "car_r1", label: "rouge", emoji: "🚗",  isTarget: true  },
+            { id: "car_r2", label: "rouge", emoji: "🏎️",  isTarget: true  },
+            { id: "car_b",  label: "bleue", emoji: "🚙",  isTarget: false },
+            { id: "car_y",  label: "jaune", emoji: "🚕",  isTarget: false },
+            { id: "car_r3", label: "rouge", emoji: "🚘",  isTarget: true  },
+            { id: "car_w",  label: "blanche", emoji: "🚐", isTarget: false },
+          ],
+          points: 30,
+        },
+        { type: "completion", message: "Bravo, 3 voitures rouges trouvées ! 🏎️" },
+      ],
+    },
+
+    // ---------- Page 8 — Coloriage : vraie palette + formes à remplir ----
+    // PDF page 8: 3 sub-instructions, each "Je colorie le carré en [X]".
+    // The learner picks a color from the palette and taps the square(s)
+    // among 4 outline shapes. Distractors mirror the PDF: crescent,
+    // triangle, circle, etc.
+    {
+      id: "lesson_arabic_1_p8",
+      orderIndex: 8,
+      title: "Page 8 — Colorie les carrés",
+      description:
+        "Choisis une couleur dans la palette et colorie LE carré. Attention aux intrus !",
+      steps: [
+        {
+          type: "intro",
+          title: "Colorie les carrés",
+          text:
+            "Choisis une couleur dans la palette, puis clique sur LE carré pour le colorier. Fais bien attention à la couleur demandée !",
+        },
+        // Step 1 — Je colorie le carré en ROUGE
+        {
+          type: "exercise",
+          exerciseType: "colorize",
+          id: "p8_red",
+          instruction:
+            "Je colorie le carré en rouge — أُلَوِّنُ الْمُرَبَّعَ بِالْأَحْمَرِ",
+          palette: ["rouge", "vert", "bleu", "jaune", "noir"],
+          targetColor: "rouge",
+          shapes: [
+            { id: "s1a", kind: "crescent", isTarget: false },
+            { id: "s1b", kind: "triangle", isTarget: false },
+            { id: "s1c", kind: "circle",   isTarget: false },
+            { id: "s1d", kind: "square",   isTarget: true  },
+          ],
+          points: 20,
+        },
+        // Step 2 — Je colorie les carrés en VERT (2 squares)
+        {
+          type: "exercise",
+          exerciseType: "colorize",
+          id: "p8_green",
+          instruction:
+            "Je colorie les carrés en vert — أُلَوِّنُ الْمُرَبَّعَ بِالْأَخْضَرِ",
+          palette: ["vert", "rouge", "bleu", "jaune", "noir"],
+          targetColor: "vert",
+          shapes: [
+            { id: "s2a", kind: "triangle", isTarget: false },
+            { id: "s2b", kind: "square",   isTarget: true  },
+            { id: "s2c", kind: "square",   isTarget: true  },
+            { id: "s2d", kind: "circle",   isTarget: false },
+          ],
+          points: 25,
+        },
+        // Step 3 — Je colorie le carré en BLEU
+        {
+          type: "exercise",
+          exerciseType: "colorize",
+          id: "p8_blue",
+          instruction:
+            "Je colorie le carré en bleu — أُلَوِّنُ الْمُرَبَّعَ بِالْأَزْرَقِ",
+          palette: ["bleu", "rouge", "vert", "jaune", "noir"],
+          targetColor: "bleu",
+          shapes: [
+            { id: "s3a", kind: "circle",   isTarget: false },
+            { id: "s3b", kind: "crescent", isTarget: false },
+            { id: "s3c", kind: "square",   isTarget: true  },
+            { id: "s3d", kind: "triangle", isTarget: false },
+          ],
+          points: 20,
+        },
+        { type: "completion", message: "Bravo, 3 carrés coloriés — 🟥 🟩 🟦 ! 🎨" },
+      ],
+    },
+
+    // ---------- Page 9 — Colle des autocollants dans chaque carré ----------
+    // PDF page 9: mixed grid of shapes (triangles, circles, squares).
+    // The learner places a sticker "inside every square" — so the
+    // interactive task is: pick every square and ignore the rest.
+    {
+      id: "lesson_arabic_1_p9",
+      orderIndex: 9,
+      title: "Page 9 — Colle un autocollant sur chaque carré",
+      description:
+        "Parmi toutes les formes, clique sur chaque carré pour y coller un autocollant ⭐.",
+      steps: [
+        {
+          type: "intro",
+          title: "Les autocollants",
+          text:
+            "Je colle des autocollants dans chaque carré. أَلْصِقُ مُلْصَقَاتٍ دَاخِلَ كُلِّ مُرَبَّعٍ",
+          audioUrl: audioUrlFor("أَلْصِقُ مُلْصَقَاتٍ دَاخِلَ كُلِّ مُرَبَّعٍ"),
+        },
+        {
+          type: "exercise",
+          exerciseType: "multi_select",
+          id: "p9_stickers",
+          question:
+            "Clique sur tous les carrés pour y coller un autocollant — أَلْصِقُ مُلْصَقَاتٍ دَاخِلَ كُلِّ مُرَبَّعٍ",
+          // 12 shapes: 6 squares (targets) + 3 triangles + 3 circles.
+          options: [
+            { id: "sh1",  emoji: "🟧", isTarget: true  }, // carré orange
+            { id: "sh2",  emoji: "🔺", isTarget: false }, // triangle
+            { id: "sh3",  emoji: "🟦", isTarget: true  }, // carré bleu
+            { id: "sh4",  emoji: "⭕", isTarget: false }, // cercle
+            { id: "sh5",  emoji: "🟨", isTarget: true  }, // carré jaune
+            { id: "sh6",  emoji: "🔺", isTarget: false }, // triangle
+            { id: "sh7",  emoji: "🟩", isTarget: true  }, // carré vert
+            { id: "sh8",  emoji: "⭕", isTarget: false }, // cercle
+            { id: "sh9",  emoji: "🟥", isTarget: true  }, // carré rouge
+            { id: "sh10", emoji: "🔺", isTarget: false }, // triangle
+            { id: "sh11", emoji: "🟪", isTarget: true  }, // carré violet
+            { id: "sh12", emoji: "⭕", isTarget: false }, // cercle
+          ],
+          points: 40,
+        },
+        {
+          type: "completion",
+          message: "Tous les carrés ont leur autocollant ! 🌟 Leçon terminée !",
+        },
+      ],
+    },
+  ];
+
+  // Replace the whole Arabic Level 1 set atomically: delete any old
+  // rows (from earlier 5-lesson seeds) then create the 9 new ones.
+  // CASCADE on CourseLessonProgress ensures stale progress is cleared.
+  await prisma.courseLesson.deleteMany({
+    where: { courseId: "course_arabic_1" },
+  });
+  for (const lesson of arabicLevel1Lessons) {
+    await prisma.courseLesson.create({
+      data: {
+        id: lesson.id,
+        courseId: "course_arabic_1",
+        orderIndex: lesson.orderIndex,
+        title: lesson.title,
+        description: lesson.description,
+        steps: lesson.steps,
+      },
+    });
+  }
+  console.log(`  ✓ Arabic Level 1: ${arabicLevel1Lessons.length} lessons seeded`);
 
   // ---- Admin ---------------------------------------------------------------
   const adminUser = await prisma.user.upsert({

@@ -71,6 +71,8 @@ export interface ThemeViewModel {
 
 export interface CourseViewModel {
   id: string;
+  /** URL slug for the level (e.g. "level-1"). Null while seed-data is partial. */
+  slug: string | null;
   title: string;
   description: string;
   level: string;
@@ -131,6 +133,7 @@ export async function getThemeWithCourses(
       ...presentationFor(theme.name),
       courses: theme.courses.map((c) => ({
         id: c.id,
+        slug: c.slug,
         title: c.title || c.name,
         description: c.description,
         level: c.levelLabel,

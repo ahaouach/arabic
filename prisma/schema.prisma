@@ -73,10 +73,11 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  students     Student[]
-  teacher      Teacher?
-  comments     Comment[]
-  subscription Subscription?
+  students       Student[]
+  teacher        Teacher?
+  comments       Comment[]
+  subscription   Subscription?
+  lessonProgress CourseLessonProgress[]
 }
 
 model Student {
@@ -129,9 +130,17 @@ model Course {
   themeId     String?
   theme       Theme?    @relation(fields: [themeId], references: [id], onDelete: SetNull)
 
+  // ---- Level slug (used as URL segment, e.g. "level-1") -----------------
+  // A Course functions as a Level inside its theme. The slug is unique
+  // per theme so URLs like /dashboard/courses/arabic/level-1 resolve
+  // unambiguously.
+  slug        String?
+
   homework    Homework[]
   enrollments Enrollment[]
+  lessons     CourseLesson[]
 
+  @@unique([themeId, slug])
   @@index([themeId])
 }
 
@@ -146,6 +155,53 @@ model Theme {
   createdAt   DateTime @default(now())
 
   courses     Course[]
+}
+
+/// Interactive course lesson (self-paced, gamified).
+///
+/// Distinct from the live `Lesson` model which represents scheduled
+/// classroom sessions. `orderIndex` mirrors the source-book PAGE
+/// NUMBER — each PDF page is exactly one lesson, in the same order
+/// as the printed book.
+///
+/// `steps` is a JSON array of step objects (intro / visual / exercise
+/// / completion). The shape is validated by Zod on every read so a
+/// tampered row can never reach the renderer.
+model CourseLesson {
+  id          String   @id @default(cuid())
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  orderIndex  Int
+  title       String
+  description String   @default("")
+  steps       Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  progress CourseLessonProgress[]
+
+  @@unique([courseId, orderIndex])
+  @@index([courseId])
+}
+
+/// Per-user progress for an interactive lesson. Score is always
+/// computed and stored server-side — the client cannot submit a score.
+model CourseLessonProgress {
+  id          String       @id @default(cuid())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId    String
+  lesson      CourseLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  score       Int          @default(0)
+  maxScore    Int          @default(0)
+  completed   Boolean      @default(false)
+  attempts    Int          @default(0)
+  completedAt DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([userId, lessonId])
+  @@index([userId])
 }
 
 model Enrollment {
