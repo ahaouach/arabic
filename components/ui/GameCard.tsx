@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useMemo } from "react";
 
 export type ThemeSlug = "arabic" | "islamic" | "quran" | "others";
@@ -83,9 +83,12 @@ function pickStyle(slug: string): ThemeStyle {
 }
 
 export default function GameCard({ id, name, slug, level = 1, badge, index = 0 }: GameCardProps) {
-  const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
   const style = useMemo(() => pickStyle(slug), [slug]);
+
+  // Slug is URL-safe (validated at the DB layer via regex on insert/seed).
+  // encodeURIComponent is belt-and-suspenders for any future non-ASCII slug.
+  const href = `/dashboard/courses/${encodeURIComponent(slug)}`;
 
   const floatAnim = prefersReducedMotion
     ? {}
@@ -94,29 +97,19 @@ export default function GameCard({ id, name, slug, level = 1, badge, index = 0 }
         rotate: [0, 1.5, 0, -1.5, 0],
       };
 
-  const handleStart = () => {
-    // Navigate to a slug-based sub-route. Slug is validated server-side before any DB query.
-    router.push(`/dashboard/courses/${encodeURIComponent(slug)}`);
-  };
-
   return (
-    <motion.article
+    <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.92 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: index * 0.12, type: "spring", stiffness: 120, damping: 14 }}
       whileHover={{ scale: 1.04, rotate: -1 }}
       whileTap={{ scale: 0.97 }}
-      className="relative group cursor-pointer select-none"
-      onClick={handleStart}
-      role="button"
-      tabIndex={0}
+      className="relative group select-none"
+    >
+    <Link
+      href={href}
       aria-label={`Start learning ${name}`}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleStart();
-        }
-      }}
+      className="block rounded-[36px] focus:outline-none focus-visible:ring-4 focus-visible:ring-sky-300/70 focus-visible:ring-offset-2"
     >
       {/* Glow */}
       <div
@@ -199,16 +192,11 @@ export default function GameCard({ id, name, slug, level = 1, badge, index = 0 }
           </div>
         </div>
 
-        {/* CTA */}
-        <motion.button
-          type="button"
+        {/* CTA (visual only — the whole card is already a link) */}
+        <motion.span
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={(e) => {
-            e.stopPropagation();
-            handleStart();
-          }}
-          className="relative mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-bold text-gray-800 shadow-lg ring-1 ring-black/5 transition-colors hover:bg-yellow-50"
+          className="relative mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-bold text-gray-800 shadow-lg ring-1 ring-black/5 transition-colors group-hover:bg-yellow-50"
           data-theme-id={id}
         >
           Start Learning
@@ -219,8 +207,9 @@ export default function GameCard({ id, name, slug, level = 1, badge, index = 0 }
           >
             →
           </motion.span>
-        </motion.button>
+        </motion.span>
       </motion.div>
-    </motion.article>
+    </Link>
+    </motion.div>
   );
 }

@@ -58,6 +58,12 @@ enum InvoiceStatus {
   failed
 }
 
+enum LessonLevel {
+  basic
+  intermediate
+  advanced
+}
+
 // ---- Models ----------------------------------------------------------------
 
 model Theme {
@@ -67,6 +73,48 @@ model Theme {
   description String   @default("")
   sortOrder   Int      @default(0)
   createdAt   DateTime @default(now())
+
+  courses      Course[]
+  themeLessons ThemeLesson[]
+}
+
+/// Self-paced lesson belonging to a Theme (gamified catalogue).
+/// Distinct from the classroom `Lesson` model which represents a
+/// scheduled live session.
+model ThemeLesson {
+  id          String      @id @default(cuid())
+  slug        String
+  title       String
+  description String?
+  icon        String?
+  level       LessonLevel
+  order       Int         @default(0) @map("sortOrder")
+  isLocked    Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+
+  themeId String
+  theme   Theme  @relation(fields: [themeId], references: [id], onDelete: Cascade)
+
+  sections LessonSection[]
+
+  @@unique([themeId, slug])
+  @@index([themeId])
+}
+
+/// A renderable block inside a ThemeLesson.
+/// `content` is a JSON blob whose shape is validated per `type` via Zod
+/// on read, so a tampered row can never reach the renderer unchecked.
+model LessonSection {
+  id        String   @id @default(cuid())
+  type      String
+  content   Json
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  lessonId String
+  lesson   ThemeLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@index([lessonId])
 }
 
 model User {
@@ -82,10 +130,11 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  students     Student[]
-  teacher      Teacher?
-  comments     Comment[]
-  subscription Subscription?
+  students       Student[]
+  teacher        Teacher?
+  comments       Comment[]
+  subscription   Subscription?
+  lessonProgress CourseLessonProgress[]
 }
 
 model Student {
@@ -121,15 +170,70 @@ model Teacher {
 }
 
 model Course {
-  id          String    @id @default(cuid())
+  id          String   @id @default(cuid())
   name        String
   level       Int
   program     Program
-  description String    @default("")
-  createdAt   DateTime  @default(now())
+  description String   @default("")
+  createdAt   DateTime @default(now())
+
+  // ---- Catalogue / theme-browse fields (dashboard courses feature) -------
+  title      String @default("")
+  duration   String @default("")
+  levelLabel String @default("Beginner")
+
+  themeId String?
+  theme   Theme?  @relation(fields: [themeId], references: [id], onDelete: SetNull)
+
+  slug String?
 
   homework    Homework[]
   enrollments Enrollment[]
+  lessons     CourseLesson[]
+
+  @@unique([themeId, slug])
+  @@index([themeId])
+}
+
+/// Interactive course lesson (self-paced, gamified).
+/// Distinct from the live `Lesson` model which represents scheduled
+/// classroom sessions. `orderIndex` mirrors the source-book PAGE NUMBER.
+/// `steps` is a JSON array validated by Zod on every read.
+model CourseLesson {
+  id          String   @id @default(cuid())
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  orderIndex  Int
+  title       String
+  description String   @default("")
+  steps       Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  progress CourseLessonProgress[]
+
+  @@unique([courseId, orderIndex])
+  @@index([courseId])
+}
+
+/// Per-user progress for an interactive lesson. Score is always computed
+/// and stored server-side — the client cannot submit a score.
+model CourseLessonProgress {
+  id          String       @id @default(cuid())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId    String
+  lesson      CourseLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  score       Int          @default(0)
+  maxScore    Int          @default(0)
+  completed   Boolean      @default(false)
+  attempts    Int          @default(0)
+  completedAt DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([userId, lessonId])
+  @@index([userId])
 }
 
 model Enrollment {
