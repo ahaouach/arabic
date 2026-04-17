@@ -257,6 +257,88 @@ async function main() {
             meaning?: string;
           }>;
         };
+      }
+    | {
+        type: "pronoun_cards";
+        content: {
+          title?: string;
+          instructions?: string;
+          pronouns: Array<{
+            pronoun: string;
+            audioText?: string;
+            meaning?: string;
+            emoji?: string;
+          }>;
+        };
+      }
+    | {
+        type: "pronoun_object";
+        content: {
+          title?: string;
+          instructions?: string;
+          pairs: Array<{
+            subject: string;
+            object: string;
+            subjectAudio?: string;
+            objectAudio?: string;
+            meaning?: string;
+            emoji?: string;
+          }>;
+        };
+      }
+    | {
+        type: "pronoun_sentences";
+        content: {
+          title?: string;
+          instructions?: string;
+          sentences: Array<{
+            sentence: string;
+            pronoun: string;
+            translation?: string;
+            audioText?: string;
+            emoji?: string;
+          }>;
+        };
+      }
+    | {
+        type: "pronoun_quiz";
+        content: {
+          title?: string;
+          instructions?: string;
+          questions: Array<{
+            prompt: string;
+            answer: string;
+            options: string[];
+            translation?: string;
+          }>;
+        };
+      }
+    | {
+        type: "animal_world";
+        content: {
+          title?: string;
+          instructions?: string;
+          world: "farm" | "jungle" | "sky" | "ocean";
+          animals: Array<{
+            name: string;
+            emoji: string;
+            audioText?: string;
+            meaning?: string;
+          }>;
+        };
+      }
+    | {
+        type: "animal_world_quiz";
+        content: {
+          title?: string;
+          instructions?: string;
+          rounds: Array<{
+            prompt: string;
+            audioText?: string;
+            answer: string;
+            options: Array<{ name: string; emoji: string }>;
+          }>;
+        };
       };
 
   interface LessonSeed {
@@ -790,26 +872,119 @@ async function main() {
     },
     {
       themeSlug: "arabic",
-      slug: "animals",
-      title: "الحيوانات (Animals)",
-      description: "Meet animals in Arabic.",
+      slug: "animals-world",
+      title: "عَالَمُ الْحَيَوَانَاتِ",
+      description: "Explore animals grouped by their natural environments.",
       icon: "🐾",
       level: "basic",
       order: 33,
       sections: [
         {
-          type: "text",
+          type: "animal_world",
           content: {
-            title: "تعلم الحيوانات",
-            body: "قطة — cat\nكلب — dog\nطائر — bird\nسمكة — fish",
+            title: "حَيَوَانَاتُ الْمَزْرَعَةِ",
+            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ حَيَوَانٍ لِتَسْمَعَ اسْمَهُ",
+            world: "farm",
+            animals: [
+              { name: "بَقَرَةٌ", emoji: "🐄", audioText: "بَقَرَةٌ", meaning: "cow" },
+              { name: "دَجَاجَةٌ", emoji: "🐔", audioText: "دَجَاجَةٌ", meaning: "chicken" },
+              { name: "خَرُوفٌ", emoji: "🐑", audioText: "خَرُوفٌ", meaning: "sheep" },
+              { name: "حِصَانٌ", emoji: "🐎", audioText: "حِصَانٌ", meaning: "horse" },
+              { name: "حِمَارٌ", emoji: "🫏", audioText: "حِمَارٌ", meaning: "donkey" },
+            ],
           },
         },
         {
-          type: "quiz",
+          type: "animal_world",
           content: {
-            question: "Which word means 'cat'?",
-            options: ["قطة", "كلب", "سمكة"],
-            answer: "قطة",
+            title: "حَيَوَانَاتُ الْغَابَةِ",
+            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ حَيَوَانٍ لِتَسْمَعَ اسْمَهُ",
+            world: "jungle",
+            animals: [
+              { name: "أَسَدٌ", emoji: "🦁", audioText: "أَسَدٌ", meaning: "lion" },
+              { name: "نَمِرٌ", emoji: "🐯", audioText: "نَمِرٌ", meaning: "tiger" },
+              { name: "قِرْدٌ", emoji: "🐒", audioText: "قِرْدٌ", meaning: "monkey" },
+              { name: "فِيلٌ", emoji: "🐘", audioText: "فِيلٌ", meaning: "elephant" },
+              { name: "زَرَافَةٌ", emoji: "🦒", audioText: "زَرَافَةٌ", meaning: "giraffe" },
+            ],
+          },
+        },
+        {
+          type: "animal_world",
+          content: {
+            title: "حَيَوَانَاتٌ تَطِيرُ",
+            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ حَيَوَانٍ لِتَسْمَعَ اسْمَهُ",
+            world: "sky",
+            animals: [
+              { name: "طَائِرٌ", emoji: "🐦", audioText: "طَائِرٌ", meaning: "bird" },
+              { name: "بَطَّةٌ", emoji: "🦆", audioText: "بَطَّةٌ", meaning: "duck" },
+              { name: "دِيكٌ", emoji: "🐓", audioText: "دِيكٌ", meaning: "rooster" },
+              { name: "نَسْرٌ", emoji: "🦅", audioText: "نَسْرٌ", meaning: "eagle" },
+            ],
+          },
+        },
+        {
+          type: "animal_world",
+          content: {
+            title: "حَيَوَانَاتُ الْبَحْرِ",
+            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ حَيَوَانٍ لِتَسْمَعَ اسْمَهُ",
+            world: "ocean",
+            animals: [
+              { name: "سَمَكَةٌ", emoji: "🐟", audioText: "سَمَكَةٌ", meaning: "fish" },
+              { name: "حُوتٌ", emoji: "🐋", audioText: "حُوتٌ", meaning: "whale" },
+              { name: "دُلْفِينٌ", emoji: "🐬", audioText: "دُلْفِينٌ", meaning: "dolphin" },
+              { name: "سُلَحْفَاةٌ", emoji: "🐢", audioText: "سُلَحْفَاةٌ", meaning: "turtle" },
+              { name: "أُخْطُبُوطٌ", emoji: "🐙", audioText: "أُخْطُبُوطٌ", meaning: "octopus" },
+            ],
+          },
+        },
+        {
+          type: "animal_world_quiz",
+          content: {
+            title: "لُعْبَةُ الْحَيَوَانَاتِ",
+            instructions: "اِسْمَعْ ثُمَّ اخْتَرِ الْحَيَوَانَ الصَّحِيحَ",
+            rounds: [
+              {
+                prompt: "أَسَدٌ",
+                audioText: "أَسَدٌ",
+                answer: "أَسَدٌ",
+                options: [
+                  { name: "أَسَدٌ", emoji: "🦁" },
+                  { name: "فِيلٌ", emoji: "🐘" },
+                  { name: "قِرْدٌ", emoji: "🐒" },
+                ],
+              },
+              {
+                prompt: "بَقَرَةٌ",
+                audioText: "بَقَرَةٌ",
+                answer: "بَقَرَةٌ",
+                options: [
+                  { name: "خَرُوفٌ", emoji: "🐑" },
+                  { name: "بَقَرَةٌ", emoji: "🐄" },
+                  { name: "حِصَانٌ", emoji: "🐎" },
+                ],
+              },
+              {
+                prompt: "حُوتٌ",
+                audioText: "حُوتٌ",
+                answer: "حُوتٌ",
+                options: [
+                  { name: "سَمَكَةٌ", emoji: "🐟" },
+                  { name: "حُوتٌ", emoji: "🐋" },
+                  { name: "دُلْفِينٌ", emoji: "🐬" },
+                ],
+              },
+              {
+                prompt: "نَسْرٌ",
+                audioText: "نَسْرٌ",
+                answer: "نَسْرٌ",
+                options: [
+                  { name: "دِيكٌ", emoji: "🐓" },
+                  { name: "نَسْرٌ", emoji: "🦅" },
+                  { name: "بَطَّةٌ", emoji: "🦆" },
+                ],
+              },
+            ],
           },
         },
       ],
@@ -841,28 +1016,190 @@ async function main() {
         },
       ],
     },
+    // ضَمَائِرُ الْمُتَكَلِّمِ
     {
       themeSlug: "arabic",
-      slug: "pronouns-first-person",
-      title: "ضمير المتكلم (First-person pronouns)",
-      description: "Say 'I' and 'we' in Arabic.",
-      icon: "🙋",
+      slug: "pronouns-mutakallim",
+      title: "ضَمَائِرُ الْمُتَكَلِّمِ",
+      description: "First-person pronouns in Arabic.",
+      icon: "👤",
       level: "basic",
       order: 35,
       sections: [
         {
-          type: "text",
+          type: "pronoun_cards",
           content: {
-            title: "ضمير المتكلم",
-            body: "أنا — I\nنحن — we\n\nUse أنا for yourself, and نحن when you're with others.",
+            title: "تَعَرَّفْ عَلَى الضَّمَائِرِ",
+            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ ضَمِيرٍ لِتَسْمَعَ اسْمَهُ",
+            pronouns: [
+              { pronoun: "أَنَا", audioText: "أَنَا", meaning: "I", emoji: "🙋" },
+              { pronoun: "نَحْنُ", audioText: "نَحْنُ", meaning: "We", emoji: "👥" },
+            ],
           },
         },
         {
-          type: "quiz",
+          type: "pronoun_object",
           content: {
-            question: "How do you say 'I' in Arabic?",
-            options: ["أنا", "نحن", "أنت"],
-            answer: "أنا",
+            title: "الضَّمَائِرُ الْمَفْعُولِيَّةُ",
+            instructions: "لَاحِظْ كَيْفَ يَتَحَوَّلُ الضَّمِيرُ إِلَى صِيغَةِ الْمَفْعُولِ",
+            pairs: [
+              { subject: "أَنَا", object: "إِيَّايَ", subjectAudio: "أَنَا", objectAudio: "إِيَّايَ", meaning: "me" },
+              { subject: "نَحْنُ", object: "إِيَّانَا", subjectAudio: "نَحْنُ", objectAudio: "إِيَّانَا", meaning: "us" },
+            ],
+          },
+        },
+        {
+          type: "pronoun_sentences",
+          content: {
+            title: "الضَّمَائِرُ فِي الْجُمَلِ",
+            instructions: "اِضْغَطْ عَلَى الْجُمْلَةِ لِتَسْمَعَهَا",
+            sentences: [
+              { sentence: "أَنَا أَكْتُبُ", pronoun: "أَنَا", translation: "I am writing", audioText: "أَنَا أَكْتُبُ", emoji: "✍️" },
+              { sentence: "نَحْنُ نَلْعَبُ", pronoun: "نَحْنُ", translation: "We are playing", audioText: "نَحْنُ نَلْعَبُ", emoji: "⚽" },
+              { sentence: "أَنَا أَقْرَأُ", pronoun: "أَنَا", translation: "I am reading", audioText: "أَنَا أَقْرَأُ", emoji: "📖" },
+              { sentence: "نَحْنُ نَأْكُلُ", pronoun: "نَحْنُ", translation: "We are eating", audioText: "نَحْنُ نَأْكُلُ", emoji: "🍽️" },
+            ],
+          },
+        },
+        {
+          type: "pronoun_quiz",
+          content: {
+            title: "لُعْبَةُ الضَّمَائِرِ",
+            instructions: "اِخْتَرِ الضَّمِيرَ الْمُنَاسِبَ",
+            questions: [
+              { prompt: "____ أَلْعَبُ", answer: "أَنَا", options: ["أَنَا", "نَحْنُ", "هُوَ"], translation: "__ play" },
+              { prompt: "____ نَدْرُسُ", answer: "نَحْنُ", options: ["أَنَا", "نَحْنُ", "هِيَ"], translation: "__ study" },
+              { prompt: "____ أَكْتُبُ", answer: "أَنَا", options: ["أَنَا", "أَنْتَ", "نَحْنُ"], translation: "__ write" },
+            ],
+          },
+        },
+      ],
+    },
+    // ضَمَائِرُ الْمُخَاطَبِ
+    {
+      themeSlug: "arabic",
+      slug: "pronouns-mukhatab",
+      title: "ضَمَائِرُ الْمُخَاطَبِ",
+      description: "Second-person pronouns in Arabic.",
+      icon: "🗣️",
+      level: "basic",
+      order: 36,
+      sections: [
+        {
+          type: "pronoun_cards",
+          content: {
+            title: "تَعَرَّفْ عَلَى الضَّمَائِرِ",
+            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ ضَمِيرٍ لِتَسْمَعَ اسْمَهُ",
+            pronouns: [
+              { pronoun: "أَنْتَ", audioText: "أَنْتَ", meaning: "You (m.)", emoji: "👦" },
+              { pronoun: "أَنْتِ", audioText: "أَنْتِ", meaning: "You (f.)", emoji: "👧" },
+              { pronoun: "أَنْتُمَا", audioText: "أَنْتُمَا", meaning: "You two", emoji: "👬" },
+              { pronoun: "أَنْتُمْ", audioText: "أَنْتُمْ", meaning: "You (m. pl.)", emoji: "👨‍👦‍👦" },
+              { pronoun: "أَنْتُنَّ", audioText: "أَنْتُنَّ", meaning: "You (f. pl.)", emoji: "👩‍👧‍👧" },
+            ],
+          },
+        },
+        {
+          type: "pronoun_object",
+          content: {
+            title: "الضَّمَائِرُ الْمَفْعُولِيَّةُ",
+            instructions: "لَاحِظْ كَيْفَ يَتَحَوَّلُ الضَّمِيرُ إِلَى صِيغَةِ الْمَفْعُولِ",
+            pairs: [
+              { subject: "أَنْتَ", object: "إِيَّاكَ", subjectAudio: "أَنْتَ", objectAudio: "إِيَّاكَ", meaning: "you (m.)" },
+              { subject: "أَنْتِ", object: "إِيَّاكِ", subjectAudio: "أَنْتِ", objectAudio: "إِيَّاكِ", meaning: "you (f.)" },
+              { subject: "أَنْتُمَا", object: "إِيَّاكُمَا", subjectAudio: "أَنْتُمَا", objectAudio: "إِيَّاكُمَا", meaning: "you two" },
+              { subject: "أَنْتُمْ", object: "إِيَّاكُمْ", subjectAudio: "أَنْتُمْ", objectAudio: "إِيَّاكُمْ", meaning: "you (m. pl.)" },
+              { subject: "أَنْتُنَّ", object: "إِيَّاكُنَّ", subjectAudio: "أَنْتُنَّ", objectAudio: "إِيَّاكُنَّ", meaning: "you (f. pl.)" },
+            ],
+          },
+        },
+        {
+          type: "pronoun_sentences",
+          content: {
+            title: "الضَّمَائِرُ فِي الْجُمَلِ",
+            instructions: "اِضْغَطْ عَلَى الْجُمْلَةِ لِتَسْمَعَهَا",
+            sentences: [
+              { sentence: "أَنْتَ تَدْرُسُ", pronoun: "أَنْتَ", translation: "You (m.) study", audioText: "أَنْتَ تَدْرُسُ", emoji: "📚" },
+              { sentence: "أَنْتِ تَكْتُبِينَ", pronoun: "أَنْتِ", translation: "You (f.) write", audioText: "أَنْتِ تَكْتُبِينَ", emoji: "✏️" },
+              { sentence: "أَنْتُمْ تَلْعَبُونَ", pronoun: "أَنْتُمْ", translation: "You (m. pl.) play", audioText: "أَنْتُمْ تَلْعَبُونَ", emoji: "⚽" },
+            ],
+          },
+        },
+        {
+          type: "pronoun_quiz",
+          content: {
+            title: "لُعْبَةُ الضَّمَائِرِ",
+            instructions: "اِخْتَرِ الضَّمِيرَ الْمُنَاسِبَ",
+            questions: [
+              { prompt: "____ تَدْرُسُ", answer: "أَنْتَ", options: ["أَنَا", "أَنْتَ", "هُوَ"], translation: "__ study (m.)" },
+              { prompt: "____ تَكْتُبِينَ", answer: "أَنْتِ", options: ["أَنْتِ", "أَنْتَ", "هِيَ"], translation: "__ write (f.)" },
+              { prompt: "____ تَلْعَبُونَ", answer: "أَنْتُمْ", options: ["نَحْنُ", "أَنْتُمْ", "هُمْ"], translation: "__ play (m. pl.)" },
+            ],
+          },
+        },
+      ],
+    },
+    // ضَمَائِرُ الْغَائِبِ
+    {
+      themeSlug: "arabic",
+      slug: "pronouns-ghaib",
+      title: "ضَمَائِرُ الْغَائِبِ",
+      description: "Third-person pronouns in Arabic.",
+      icon: "👀",
+      level: "basic",
+      order: 37,
+      sections: [
+        {
+          type: "pronoun_cards",
+          content: {
+            title: "تَعَرَّفْ عَلَى الضَّمَائِرِ",
+            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ ضَمِيرٍ لِتَسْمَعَ اسْمَهُ",
+            pronouns: [
+              { pronoun: "هُوَ", audioText: "هُوَ", meaning: "He", emoji: "👨" },
+              { pronoun: "هِيَ", audioText: "هِيَ", meaning: "She", emoji: "👩" },
+              { pronoun: "هُمَا", audioText: "هُمَا", meaning: "They two", emoji: "👥" },
+              { pronoun: "هُمْ", audioText: "هُمْ", meaning: "They (m.)", emoji: "👨‍👨‍👦" },
+              { pronoun: "هُنَّ", audioText: "هُنَّ", meaning: "They (f.)", emoji: "👩‍👩‍👧" },
+            ],
+          },
+        },
+        {
+          type: "pronoun_object",
+          content: {
+            title: "الضَّمَائِرُ الْمَفْعُولِيَّةُ",
+            instructions: "لَاحِظْ كَيْفَ يَتَحَوَّلُ الضَّمِيرُ إِلَى صِيغَةِ الْمَفْعُولِ",
+            pairs: [
+              { subject: "هُوَ", object: "إِيَّاهُ", subjectAudio: "هُوَ", objectAudio: "إِيَّاهُ", meaning: "him" },
+              { subject: "هِيَ", object: "إِيَّاهَا", subjectAudio: "هِيَ", objectAudio: "إِيَّاهَا", meaning: "her" },
+              { subject: "هُمَا", object: "إِيَّاهُمَا", subjectAudio: "هُمَا", objectAudio: "إِيَّاهُمَا", meaning: "them two" },
+              { subject: "هُمْ", object: "إِيَّاهُمْ", subjectAudio: "هُمْ", objectAudio: "إِيَّاهُمْ", meaning: "them (m.)" },
+              { subject: "هُنَّ", object: "إِيَّاهُنَّ", subjectAudio: "هُنَّ", objectAudio: "إِيَّاهُنَّ", meaning: "them (f.)" },
+            ],
+          },
+        },
+        {
+          type: "pronoun_sentences",
+          content: {
+            title: "الضَّمَائِرُ فِي الْجُمَلِ",
+            instructions: "اِضْغَطْ عَلَى الْجُمْلَةِ لِتَسْمَعَهَا",
+            sentences: [
+              { sentence: "هُوَ يَأْكُلُ", pronoun: "هُوَ", translation: "He eats", audioText: "هُوَ يَأْكُلُ", emoji: "🍎" },
+              { sentence: "هِيَ تَقْرَأُ", pronoun: "هِيَ", translation: "She reads", audioText: "هِيَ تَقْرَأُ", emoji: "📖" },
+              { sentence: "هُمْ يَلْعَبُونَ", pronoun: "هُمْ", translation: "They (m.) play", audioText: "هُمْ يَلْعَبُونَ", emoji: "⚽" },
+              { sentence: "هُنَّ يَضْحَكْنَ", pronoun: "هُنَّ", translation: "They (f.) laugh", audioText: "هُنَّ يَضْحَكْنَ", emoji: "😄" },
+            ],
+          },
+        },
+        {
+          type: "pronoun_quiz",
+          content: {
+            title: "لُعْبَةُ الضَّمَائِرِ",
+            instructions: "اِخْتَرِ الضَّمِيرَ الْمُنَاسِبَ",
+            questions: [
+              { prompt: "____ يَأْكُلُ", answer: "هُوَ", options: ["هُوَ", "هِيَ", "أَنَا"], translation: "__ eats (m.)" },
+              { prompt: "____ تَقْرَأُ", answer: "هِيَ", options: ["هُوَ", "هِيَ", "أَنْتِ"], translation: "__ reads (f.)" },
+              { prompt: "____ يَلْعَبُونَ", answer: "هُمْ", options: ["نَحْنُ", "هُمْ", "أَنْتُمْ"], translation: "__ play (m. pl.)" },
+            ],
           },
         },
       ],

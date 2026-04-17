@@ -50,6 +50,12 @@ const ZONE_LABELS: Record<Section["type"], { label: string; icon: string }> = {
   family_tree: { label: "Family Tree", icon: "🌳" },
   family_match: { label: "Match Game", icon: "🎮" },
   body_map: { label: "Body Explorer", icon: "👤" },
+  pronoun_cards: { label: "Meet the Pronouns", icon: "🗣️" },
+  pronoun_object: { label: "Object Forms", icon: "🔄" },
+  pronoun_sentences: { label: "Sentences", icon: "🧠" },
+  pronoun_quiz: { label: "Pronoun Quiz", icon: "🎮" },
+  animal_world: { label: "Animal World", icon: "🐾" },
+  animal_world_quiz: { label: "Animal Quiz", icon: "🎮" },
 };
 
 export default function LessonAdventure({

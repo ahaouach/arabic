@@ -377,6 +377,110 @@ export const BodyMapSectionSchema = z.object({
   parts: z.array(BodyPartSchema).min(1).max(20),
 });
 
+// ---- Pronoun lesson blocks -------------------------------------------------
+
+const PronounCardSchema = z.object({
+  pronoun: z.string().trim().min(1).max(50),
+  audioText: z.string().trim().min(1).max(200).optional(),
+  meaning: z.string().trim().min(1).max(100).optional(),
+  emoji: z.string().trim().min(1).max(8).optional(),
+});
+
+export const PronounCardsSectionSchema = z.object({
+  title: z.string().trim().min(1).max(200).optional(),
+  instructions: z.string().trim().min(1).max(500).optional(),
+  pronouns: z.array(PronounCardSchema).min(1).max(10),
+});
+
+const PronounTransformSchema = z.object({
+  subject: z.string().trim().min(1).max(50),
+  object: z.string().trim().min(1).max(50),
+  subjectAudio: z.string().trim().min(1).max(200).optional(),
+  objectAudio: z.string().trim().min(1).max(200).optional(),
+  meaning: z.string().trim().min(1).max(100).optional(),
+  emoji: z.string().trim().min(1).max(8).optional(),
+});
+
+export const PronounObjectSectionSchema = z.object({
+  title: z.string().trim().min(1).max(200).optional(),
+  instructions: z.string().trim().min(1).max(500).optional(),
+  pairs: z.array(PronounTransformSchema).min(1).max(10),
+});
+
+const PronounSentenceSchema = z.object({
+  sentence: z.string().trim().min(1).max(300),
+  pronoun: z.string().trim().min(1).max(50),
+  translation: z.string().trim().min(1).max(200).optional(),
+  audioText: z.string().trim().min(1).max(300).optional(),
+  emoji: z.string().trim().min(1).max(8).optional(),
+});
+
+export const PronounSentencesSectionSchema = z.object({
+  title: z.string().trim().min(1).max(200).optional(),
+  instructions: z.string().trim().min(1).max(500).optional(),
+  sentences: z.array(PronounSentenceSchema).min(1).max(20),
+});
+
+const PronounQuizItemSchema = z
+  .object({
+    prompt: z.string().trim().min(1).max(300),
+    answer: z.string().trim().min(1).max(50),
+    options: z.array(z.string().trim().min(1).max(50)).min(2).max(6),
+    translation: z.string().trim().min(1).max(200).optional(),
+  })
+  .refine((v) => v.options.includes(v.answer), {
+    message: "answer must be in options",
+  });
+
+export const PronounQuizSectionSchema = z.object({
+  title: z.string().trim().min(1).max(200).optional(),
+  instructions: z.string().trim().min(1).max(500).optional(),
+  questions: z.array(PronounQuizItemSchema).min(1).max(20),
+});
+
+// ---- Animal world lesson ---------------------------------------------------
+// `world` is a closed enum mapping to a themed background gradient in the
+// renderer — no arbitrary CSS reaches the client.
+
+export const ANIMAL_WORLDS = ["farm", "jungle", "sky", "ocean"] as const;
+export type AnimalWorld = (typeof ANIMAL_WORLDS)[number];
+
+const AnimalItemSchema = z.object({
+  name: z.string().trim().min(1).max(100),
+  emoji: z.string().trim().min(1).max(8),
+  audioText: z.string().trim().min(1).max(200).optional(),
+  meaning: z.string().trim().min(1).max(100).optional(),
+});
+
+export const AnimalWorldSectionSchema = z.object({
+  title: z.string().trim().min(1).max(200).optional(),
+  instructions: z.string().trim().min(1).max(500).optional(),
+  world: z.enum(ANIMAL_WORLDS),
+  animals: z.array(AnimalItemSchema).min(1).max(20),
+});
+
+const AnimalQuizOptionSchema = z.object({
+  name: z.string().trim().min(1).max(100),
+  emoji: z.string().trim().min(1).max(8),
+});
+
+const AnimalQuizRoundSchema = z
+  .object({
+    prompt: z.string().trim().min(1).max(200),
+    audioText: z.string().trim().min(1).max(200).optional(),
+    answer: z.string().trim().min(1).max(100),
+    options: z.array(AnimalQuizOptionSchema).min(2).max(6),
+  })
+  .refine((v) => v.options.some((o) => o.name === v.answer), {
+    message: "answer must match one of the option names",
+  });
+
+export const AnimalWorldQuizSectionSchema = z.object({
+  title: z.string().trim().min(1).max(200).optional(),
+  instructions: z.string().trim().min(1).max(500).optional(),
+  rounds: z.array(AnimalQuizRoundSchema).min(1).max(20),
+});
+
 // ---- Types ------------------------------------------------------------------
 
 export type TextSection = z.infer<typeof TextSectionSchema>;
@@ -400,6 +504,12 @@ export type FamilyIntroSection = z.infer<typeof FamilyIntroSectionSchema>;
 export type FamilyTreeSection = z.infer<typeof FamilyTreeSectionSchema>;
 export type FamilyMatchSection = z.infer<typeof FamilyMatchSectionSchema>;
 export type BodyMapSection = z.infer<typeof BodyMapSectionSchema>;
+export type PronounCardsSection = z.infer<typeof PronounCardsSectionSchema>;
+export type PronounObjectSection = z.infer<typeof PronounObjectSectionSchema>;
+export type PronounSentencesSection = z.infer<typeof PronounSentencesSectionSchema>;
+export type PronounQuizSection = z.infer<typeof PronounQuizSectionSchema>;
+export type AnimalWorldSection = z.infer<typeof AnimalWorldSectionSchema>;
+export type AnimalWorldQuizSection = z.infer<typeof AnimalWorldQuizSectionSchema>;
 
 export type Section =
   | { id: string; order: number; type: "text"; content: TextSection }
@@ -437,7 +547,23 @@ export type Section =
   | { id: string; order: number; type: "family_intro"; content: FamilyIntroSection }
   | { id: string; order: number; type: "family_tree"; content: FamilyTreeSection }
   | { id: string; order: number; type: "family_match"; content: FamilyMatchSection }
-  | { id: string; order: number; type: "body_map"; content: BodyMapSection };
+  | { id: string; order: number; type: "body_map"; content: BodyMapSection }
+  | { id: string; order: number; type: "pronoun_cards"; content: PronounCardsSection }
+  | { id: string; order: number; type: "pronoun_object"; content: PronounObjectSection }
+  | {
+      id: string;
+      order: number;
+      type: "pronoun_sentences";
+      content: PronounSentencesSection;
+    }
+  | { id: string; order: number; type: "pronoun_quiz"; content: PronounQuizSection }
+  | { id: string; order: number; type: "animal_world"; content: AnimalWorldSection }
+  | {
+      id: string;
+      order: number;
+      type: "animal_world_quiz";
+      content: AnimalWorldQuizSection;
+    };
 
 export interface RawSectionRow {
   id: string;
@@ -567,6 +693,46 @@ export function parseSection(row: RawSectionRow): Section | null {
       const parsed = BodyMapSectionSchema.safeParse(row.content);
       if (!parsed.success) return null;
       return { id: row.id, order: row.order, type: "body_map", content: parsed.data };
+    }
+    case "pronoun_cards": {
+      const parsed = PronounCardsSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return { id: row.id, order: row.order, type: "pronoun_cards", content: parsed.data };
+    }
+    case "pronoun_object": {
+      const parsed = PronounObjectSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return { id: row.id, order: row.order, type: "pronoun_object", content: parsed.data };
+    }
+    case "pronoun_sentences": {
+      const parsed = PronounSentencesSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return {
+        id: row.id,
+        order: row.order,
+        type: "pronoun_sentences",
+        content: parsed.data,
+      };
+    }
+    case "pronoun_quiz": {
+      const parsed = PronounQuizSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return { id: row.id, order: row.order, type: "pronoun_quiz", content: parsed.data };
+    }
+    case "animal_world": {
+      const parsed = AnimalWorldSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return { id: row.id, order: row.order, type: "animal_world", content: parsed.data };
+    }
+    case "animal_world_quiz": {
+      const parsed = AnimalWorldQuizSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return {
+        id: row.id,
+        order: row.order,
+        type: "animal_world_quiz",
+        content: parsed.data,
+      };
     }
     default:
       return null;

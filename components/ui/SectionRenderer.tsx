@@ -19,6 +19,12 @@ import FamilyIntro from "./FamilyIntro";
 import FamilyTree from "./FamilyTree";
 import FamilyMatchGame from "./FamilyMatchGame";
 import HumanBodyMap from "./HumanBodyMap";
+import PronounCards from "./PronounCards";
+import PronounObject from "./PronounObject";
+import PronounSentences from "./PronounSentences";
+import PronounQuiz from "./PronounQuiz";
+import AnimalWorldSectionView from "./AnimalWorldSection";
+import AnimalWorldQuiz from "./AnimalWorldQuiz";
 import type { Section } from "@/lib/lessonSections";
 
 export default function SectionRenderer({ section }: { section: Section }) {
@@ -65,6 +71,18 @@ export default function SectionRenderer({ section }: { section: Section }) {
       return <FamilyMatchGame section={section.content} />;
     case "body_map":
       return <HumanBodyMap section={section.content} />;
+    case "pronoun_cards":
+      return <PronounCards section={section.content} />;
+    case "pronoun_object":
+      return <PronounObject section={section.content} />;
+    case "pronoun_sentences":
+      return <PronounSentences section={section.content} />;
+    case "pronoun_quiz":
+      return <PronounQuiz section={section.content} />;
+    case "animal_world":
+      return <AnimalWorldSectionView section={section.content} />;
+    case "animal_world_quiz":
+      return <AnimalWorldQuiz section={section.content} />;
     default:
       return null;
   }
