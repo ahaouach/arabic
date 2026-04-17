@@ -1,9 +1,45 @@
+/**
+ * Dynamic lesson route — loads any ThemeLesson + its LessonSections from
+ * Postgres, validates each section's JSON against its Zod schema, then
+ * renders the appropriate orchestrator.
+ *
+ * Special case: lessons containing exactly one section of type
+ * `numbers_lesson` are rendered via the dedicated `<NumbersLessonPage>`,
+ * which bundles its own chrome (breadcrumbs, hero, 5-zone navigator,
+ * completion screen). Every other lesson uses the shared
+ * `<LessonAdventure>` orchestrator.
+ *
+ * ## Running the seed
+ *
+ * The lesson content lives in `prisma/seed.ts`. To (re)populate the DB:
+ *
+ *     npm run db:push         # sync schema if models changed
+ *     npm run db:seed         # upsert all themes / lessons / sections
+ *
+ * The seed is idempotent — safe to re-run as many times as needed.
+ *
+ * ## Tweaking a lesson without a code change
+ *
+ * Every piece of lesson content — titles, instructions, zone configs,
+ * round data, colour themes, Arabic audio text — comes from the
+ * `LessonSection.content` JSON column. You can:
+ *
+ *   1. edit the object in `prisma/seed.ts` and run `npm run db:seed`, or
+ *   2. update a row directly in Postgres (Prisma Studio works great:
+ *      `npm run db:studio`).
+ *
+ * The client picks up changes on the next request. Zod schemas under
+ * `lib/schemas/` guard against malformed edits — anything invalid is
+ * silently dropped from the render.
+ */
+
 import { notFound, redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { verifyToken, COOKIE_OPTIONS } from "@/lib/auth";
 import LessonAdventure from "@/components/ui/LessonAdventure";
+import NumbersLessonPage from "@/components/ui/numbers/NumbersLessonPage";
 import { isLessonLevel, type LessonLevel } from "@/lib/lessonLevel";
 import { parseSection, type Section } from "@/lib/lessonSections";
 
@@ -128,6 +164,22 @@ export default async function LessonPage({
 
   const lesson = await loadLesson(themeSlug, lessonSlug);
   if (!lesson) notFound();
+
+  // Special case: a single `numbers_lesson` section renders via its
+  // dedicated orchestrator (its own breadcrumbs, hero, zone navigator,
+  // completion screen) to avoid the double-chrome that LessonAdventure
+  // would produce.
+  const only = lesson.sections.length === 1 ? lesson.sections[0] : null;
+  if (only && only.type === "numbers_lesson") {
+    return (
+      <NumbersLessonPage
+        content={only.content}
+        theme={lesson.theme}
+        lessonTitle={lesson.title}
+        nextLesson={lesson.nextLesson}
+      />
+    );
+  }
 
   return (
     <LessonAdventure

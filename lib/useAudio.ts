@@ -16,6 +16,14 @@ export interface UseAudioOptions {
   lang?: string;
   /** Console.debug logs. Default: dev-only. */
   debug?: boolean;
+  /**
+   * Minimum delay between successive `playAudio` calls, in ms. Rapid calls
+   * inside this window are silently dropped. Set to 0 to disable.
+   *
+   * Defaults to 400 ms — enough to avoid thrashing when a child drags the
+   * mouse across a grid, short enough to feel responsive on intentional clicks.
+   */
+  debounceMs?: number;
 }
 
 export interface UseAudioReturn {
@@ -224,6 +232,7 @@ export function useAudio(options: UseAudioOptions = {}): UseAudioReturn {
     pitch = 1.1,
     lang = "ar-SA",
     debug = process.env.NODE_ENV !== "production",
+    debounceMs = 400,
   } = options;
 
   const [isPlaying, setPlaying] = useState(false);
@@ -232,6 +241,8 @@ export function useAudio(options: UseAudioOptions = {}): UseAudioReturn {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const mutedRef = useRef(defaultMuted);
+  // Timestamp of the last `playAudio` invocation — used for rate-limiting.
+  const lastCallRef = useRef(0);
   useEffect(() => {
     mutedRef.current = isMuted;
   }, [isMuted]);
@@ -287,6 +298,17 @@ export function useAudio(options: UseAudioOptions = {}): UseAudioReturn {
         return;
       }
 
+      // Rate-limit: drop calls that arrive faster than `debounceMs` — avoids
+      // TTS / network thrashing when a child drags the mouse across a grid.
+      if (debounceMs > 0) {
+        const now = Date.now();
+        if (now - lastCallRef.current < debounceMs) {
+          if (debug) console.debug("[useAudio] debounced — skipping");
+          return;
+        }
+        lastCallRef.current = now;
+      }
+
       cleanupCurrent();
 
       const safeUrl = isValidSource(audioUrl) ? audioUrl : undefined;
@@ -334,7 +356,7 @@ export function useAudio(options: UseAudioOptions = {}): UseAudioReturn {
         else setLoading(false);
       });
     },
-    [cleanupCurrent, debug, runSpeak],
+    [cleanupCurrent, debounceMs, debug, runSpeak],
   );
 
   const setMuted = useCallback(

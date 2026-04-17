@@ -14,6 +14,8 @@
 
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { numbersLessonContent } from "./seeds/numbersLesson.seed";
+import type { NumbersLessonSection } from "@/lib/types/numbersLesson.types";
 
 const prisma = new PrismaClient();
 
@@ -339,6 +341,10 @@ async function main() {
             options: Array<{ name: string; emoji: string }>;
           }>;
         };
+      }
+    | {
+        type: "numbers_lesson";
+        content: NumbersLessonSection;
       };
 
   interface LessonSeed {
@@ -594,57 +600,19 @@ async function main() {
     {
       themeSlug: "arabic",
       slug: "numbers",
-      title: "الأعداد",
-      description: "Listen, learn, and play with Arabic numbers from 1 to 10.",
+      title: "عَالَمُ الْأَرْقَامِ",
+      description: "Discover, listen, count, match, and write numbers 1–10.",
       icon: "🔢",
       level: "basic",
       order: 1,
       sections: [
+        // Single numbers_lesson section — content is the idempotent JSON
+        // object defined in ./seeds/numbersLesson.seed.ts, which is the
+        // only place to edit lesson content (or do it live via
+        // `npm run db:studio`).
         {
-          type: "audio",
-          content: {
-            title: "تعلم الأعداد",
-            audioUrl: "/audio/numbers/intro.mp3",
-            autoPlay: true,
-          },
-        },
-        {
-          type: "numbers",
-          content: {
-            numbers: [
-              { number: 1, arabic_simple: "١", arabic_full: "وَاحِدٌ", latin: "1", transliteration: "wahidun", audioText: "وَاحِدٌ", image: "/images/numbers/1.png", audio: "/audio/numbers/1.mp3" },
-              { number: 2, arabic_simple: "٢", arabic_full: "اِثْنَانِ", latin: "2", transliteration: "ithnani", audioText: "اِثْنَانِ", image: "/images/numbers/2.png", audio: "/audio/numbers/2.mp3" },
-              { number: 3, arabic_simple: "٣", arabic_full: "ثَلَاثَةٌ", latin: "3", transliteration: "thalathatun", audioText: "ثَلَاثَةٌ", image: "/images/numbers/3.png", audio: "/audio/numbers/3.mp3" },
-              { number: 4, arabic_simple: "٤", arabic_full: "أَرْبَعَةٌ", latin: "4", transliteration: "arbaatun", audioText: "أَرْبَعَةٌ", image: "/images/numbers/4.png", audio: "/audio/numbers/4.mp3" },
-              { number: 5, arabic_simple: "٥", arabic_full: "خَمْسَةٌ", latin: "5", transliteration: "khamsatun", audioText: "خَمْسَةٌ", image: "/images/numbers/5.png", audio: "/audio/numbers/5.mp3" },
-              { number: 6, arabic_simple: "٦", arabic_full: "سِتَّةٌ", latin: "6", transliteration: "sittatun", audioText: "سِتَّةٌ", image: "/images/numbers/6.png", audio: "/audio/numbers/6.mp3" },
-              { number: 7, arabic_simple: "٧", arabic_full: "سَبْعَةٌ", latin: "7", transliteration: "sabatun", audioText: "سَبْعَةٌ", image: "/images/numbers/7.png", audio: "/audio/numbers/7.mp3" },
-              { number: 8, arabic_simple: "٨", arabic_full: "ثَمَانِيَةٌ", latin: "8", transliteration: "thamaniyatun", audioText: "ثَمَانِيَةٌ", image: "/images/numbers/8.png", audio: "/audio/numbers/8.mp3" },
-              { number: 9, arabic_simple: "٩", arabic_full: "تِسْعَةٌ", latin: "9", transliteration: "tisatun", audioText: "تِسْعَةٌ", image: "/images/numbers/9.png", audio: "/audio/numbers/9.mp3" },
-              { number: 10, arabic_simple: "١٠", arabic_full: "عَشَرَةٌ", latin: "10", transliteration: "asharatun", audioText: "عَشَرَةٌ", image: "/images/numbers/10.png", audio: "/audio/numbers/10.mp3" },
-            ],
-          },
-        },
-        {
-          type: "quiz_match",
-          content: {
-            question: "اسمع واختر الرقم الصحيح",
-            pairs: [
-              { audio: "/audio/numbers/1.mp3", answer: "1" },
-              { audio: "/audio/numbers/2.mp3", answer: "2" },
-              { audio: "/audio/numbers/3.mp3", answer: "3" },
-            ],
-          },
-        },
-        {
-          type: "game_numbers",
-          content: {
-            instructions: "اختر الرقم الصحيح",
-            questions: [
-              { audio: "/audio/numbers/5.mp3", options: ["3", "5", "7"], answer: "5" },
-              { audio: "/audio/numbers/8.mp3", options: ["6", "8", "9"], answer: "8" },
-            ],
-          },
+          type: "numbers_lesson",
+          content: numbersLessonContent,
         },
       ],
     },

@@ -1,4 +1,8 @@
 import { z } from "zod";
+import {
+  NumbersLessonSectionSchema,
+  type NumbersLessonSection,
+} from "@/lib/schemas/numbersLesson.schema";
 
 // Internal-path URL — must be a relative asset under the app root.
 // Rejects external origins and protocol-relative URLs to eliminate
@@ -563,6 +567,12 @@ export type Section =
       order: number;
       type: "animal_world_quiz";
       content: AnimalWorldQuizSection;
+    }
+  | {
+      id: string;
+      order: number;
+      type: "numbers_lesson";
+      content: NumbersLessonSection;
     };
 
 export interface RawSectionRow {
@@ -731,6 +741,16 @@ export function parseSection(row: RawSectionRow): Section | null {
         id: row.id,
         order: row.order,
         type: "animal_world_quiz",
+        content: parsed.data,
+      };
+    }
+    case "numbers_lesson": {
+      const parsed = NumbersLessonSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return {
+        id: row.id,
+        order: row.order,
+        type: "numbers_lesson",
         content: parsed.data,
       };
     }

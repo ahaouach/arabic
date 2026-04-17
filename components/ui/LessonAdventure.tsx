@@ -56,6 +56,11 @@ const ZONE_LABELS: Record<Section["type"], { label: string; icon: string }> = {
   pronoun_quiz: { label: "Pronoun Quiz", icon: "🎮" },
   animal_world: { label: "Animal World", icon: "🐾" },
   animal_world_quiz: { label: "Animal Quiz", icon: "🎮" },
+  // `numbers_lesson` renders via its own full-page orchestrator
+  // (NumbersLessonPage) — if we ever get here through LessonAdventure it
+  // means a mixed-section lesson added one by mistake; show a neutral
+  // fallback label rather than crash exhaustiveness.
+  numbers_lesson: { label: "Number World", icon: "🔢" },
 };
 
 export default function LessonAdventure({
@@ -83,7 +88,7 @@ export default function LessonAdventure({
   const mascotState = useMemo<{ message: string; mood: MascotMood }>(() => {
     if (phase.kind === "intro") {
       return {
-        message: description || "مرحبا! Let's start a new adventure together!",
+        message: description || "مَرْحَبًا! Let's start a new adventure together!",
         mood: "happy",
       };
     }
@@ -98,7 +103,7 @@ export default function LessonAdventure({
 
   /* ---- Actions ---- */
   const start = () => {
-    playAudio(undefined, description || "هيا بنا نتعلم");
+    playAudio(undefined, description || "هَيَّا بِنَا نَتَعَلَّمُ");
     if (total > 0) setPhase({ kind: "zone", index: 0 });
     else setPhase({ kind: "complete" });
   };
