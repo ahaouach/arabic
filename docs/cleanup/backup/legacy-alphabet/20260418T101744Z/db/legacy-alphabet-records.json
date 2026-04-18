@@ -1,0 +1,2885 @@
+{
+  "exportedAt": "2026-04-18T10:18:50.464Z",
+  "schemaVersion": 1,
+  "theme": {
+    "id": "cmnt0ggkx00006iuhg4f5x8me",
+    "name": "arabic",
+    "title": "Arabic"
+  },
+  "legacyLessons": [
+    {
+      "id": "cmo3nbwjc000hguq1l7gwtqvj",
+      "slug": "letter-alif",
+      "title": "الْحَرْفُ: أَلِفٌ",
+      "description": "Meet the letter ا (أَلِفٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 5,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.257Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjc000iguq1220had2b",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.257Z",
+          "content": {
+            "name": "أَلِفٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ا",
+            "audioText": "أَلِفٌ",
+            "transliteration": "alif"
+          }
+        },
+        {
+          "id": "cmo3nbwjc000jguq1cbqif1sh",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.257Z",
+          "content": {
+            "forms": [
+              {
+                "form": "أَ",
+                "vowel": "fatha",
+                "audioText": "أَ"
+              },
+              {
+                "form": "إِ",
+                "vowel": "kasra",
+                "audioText": "إِ"
+              },
+              {
+                "form": "أُ",
+                "vowel": "damma",
+                "audioText": "أُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ا",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjc000kguq1ko162k4a",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.257Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ا",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjc000lguq13z60yjjg",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.257Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "أَسَدٌ",
+                "emoji": "🦁",
+                "letter": "ا",
+                "meaning": "lion",
+                "audioText": "أَسَدٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwje000nguq1jsckce66",
+      "slug": "letter-baa",
+      "title": "الْحَرْفُ: بَاءٌ",
+      "description": "Meet the letter ب (بَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 6,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.258Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwje000oguq1nl2hjepn",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.258Z",
+          "content": {
+            "name": "بَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ب",
+            "audioText": "بَاءٌ",
+            "transliteration": "baa"
+          }
+        },
+        {
+          "id": "cmo3nbwje000pguq188ux705o",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.258Z",
+          "content": {
+            "forms": [
+              {
+                "form": "بَ",
+                "vowel": "fatha",
+                "audioText": "بَ"
+              },
+              {
+                "form": "بِ",
+                "vowel": "kasra",
+                "audioText": "بِ"
+              },
+              {
+                "form": "بُ",
+                "vowel": "damma",
+                "audioText": "بُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ب",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwje000qguq1csxmbhsb",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.258Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ب",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwje000rguq1r22qxgkx",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.258Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "بَطَّةٌ",
+                "emoji": "🦆",
+                "letter": "ب",
+                "meaning": "duck",
+                "audioText": "بَطَّةٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjf000tguq19mowtl3e",
+      "slug": "letter-taa",
+      "title": "الْحَرْفُ: تَاءٌ",
+      "description": "Meet the letter ت (تَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 7,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.260Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjf000uguq1z3r1fy1l",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.260Z",
+          "content": {
+            "name": "تَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ت",
+            "audioText": "تَاءٌ",
+            "transliteration": "taa"
+          }
+        },
+        {
+          "id": "cmo3nbwjf000vguq1ntin54u2",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.260Z",
+          "content": {
+            "forms": [
+              {
+                "form": "تَ",
+                "vowel": "fatha",
+                "audioText": "تَ"
+              },
+              {
+                "form": "تِ",
+                "vowel": "kasra",
+                "audioText": "تِ"
+              },
+              {
+                "form": "تُ",
+                "vowel": "damma",
+                "audioText": "تُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ت",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjf000wguq1akveq77k",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.260Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ت",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjf000xguq1tgonbu5c",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.260Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "تُفَّاحَةٌ",
+                "emoji": "🍎",
+                "letter": "ت",
+                "meaning": "apple",
+                "audioText": "تُفَّاحَةٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjh000zguq1f63fpgcv",
+      "slug": "letter-thaa",
+      "title": "الْحَرْفُ: ثَاءٌ",
+      "description": "Meet the letter ث (ثَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 8,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.261Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjh0010guq1uvvtfp20",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.261Z",
+          "content": {
+            "name": "ثَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ث",
+            "audioText": "ثَاءٌ",
+            "transliteration": "thaa"
+          }
+        },
+        {
+          "id": "cmo3nbwjh0011guq14dc29jl4",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.261Z",
+          "content": {
+            "forms": [
+              {
+                "form": "ثَ",
+                "vowel": "fatha",
+                "audioText": "ثَ"
+              },
+              {
+                "form": "ثِ",
+                "vowel": "kasra",
+                "audioText": "ثِ"
+              },
+              {
+                "form": "ثُ",
+                "vowel": "damma",
+                "audioText": "ثُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ث",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjh0012guq1w5mc9zw1",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.261Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ث",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjh0013guq12ni3oujg",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.261Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "ثَعْلَبٌ",
+                "emoji": "🦊",
+                "letter": "ث",
+                "meaning": "fox",
+                "audioText": "ثَعْلَبٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwji0015guq1xvd0tpbl",
+      "slug": "letter-jim",
+      "title": "الْحَرْفُ: جِيمٌ",
+      "description": "Meet the letter ج (جِيمٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 9,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.262Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwji0016guq1rg7hqt87",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.262Z",
+          "content": {
+            "name": "جِيمٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ج",
+            "audioText": "جِيمٌ",
+            "transliteration": "jim"
+          }
+        },
+        {
+          "id": "cmo3nbwji0017guq1lsaj0qj9",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.262Z",
+          "content": {
+            "forms": [
+              {
+                "form": "جَ",
+                "vowel": "fatha",
+                "audioText": "جَ"
+              },
+              {
+                "form": "جِ",
+                "vowel": "kasra",
+                "audioText": "جِ"
+              },
+              {
+                "form": "جُ",
+                "vowel": "damma",
+                "audioText": "جُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ج",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwji0018guq1l9wfd85c",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.262Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ج",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwji0019guq1udpq3nkg",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.262Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "جَمَلٌ",
+                "emoji": "🐪",
+                "letter": "ج",
+                "meaning": "camel",
+                "audioText": "جَمَلٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjj001bguq16a6urvcn",
+      "slug": "letter-haa",
+      "title": "الْحَرْفُ: حَاءٌ",
+      "description": "Meet the letter ح (حَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 10,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.263Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjj001cguq193ct5pd9",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.263Z",
+          "content": {
+            "name": "حَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ح",
+            "audioText": "حَاءٌ",
+            "transliteration": "haa"
+          }
+        },
+        {
+          "id": "cmo3nbwjj001dguq1z1babaf3",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.263Z",
+          "content": {
+            "forms": [
+              {
+                "form": "حَ",
+                "vowel": "fatha",
+                "audioText": "حَ"
+              },
+              {
+                "form": "حِ",
+                "vowel": "kasra",
+                "audioText": "حِ"
+              },
+              {
+                "form": "حُ",
+                "vowel": "damma",
+                "audioText": "حُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ح",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjj001eguq1zyf4yi41",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.263Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ح",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjj001fguq1lwnieulv",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.263Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "حِصَانٌ",
+                "emoji": "🐎",
+                "letter": "ح",
+                "meaning": "horse",
+                "audioText": "حِصَانٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjk001hguq1rrercolo",
+      "slug": "letter-khaa",
+      "title": "الْحَرْفُ: خَاءٌ",
+      "description": "Meet the letter خ (خَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 11,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.265Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjk001iguq1pwjo0tis",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.265Z",
+          "content": {
+            "name": "خَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "خ",
+            "audioText": "خَاءٌ",
+            "transliteration": "khaa"
+          }
+        },
+        {
+          "id": "cmo3nbwjk001jguq1duqg2jq2",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.265Z",
+          "content": {
+            "forms": [
+              {
+                "form": "خَ",
+                "vowel": "fatha",
+                "audioText": "خَ"
+              },
+              {
+                "form": "خِ",
+                "vowel": "kasra",
+                "audioText": "خِ"
+              },
+              {
+                "form": "خُ",
+                "vowel": "damma",
+                "audioText": "خُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "خ",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjk001kguq19z4wws9i",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.265Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "خ",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjk001lguq1g7omgi19",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.265Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "خُبْزٌ",
+                "emoji": "🍞",
+                "letter": "خ",
+                "meaning": "bread",
+                "audioText": "خُبْزٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjm001nguq1sut6ow13",
+      "slug": "letter-dal",
+      "title": "الْحَرْفُ: دَالٌ",
+      "description": "Meet the letter د (دَالٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 12,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.266Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjm001oguq15xb6ldqm",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.266Z",
+          "content": {
+            "name": "دَالٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "د",
+            "audioText": "دَالٌ",
+            "transliteration": "dal"
+          }
+        },
+        {
+          "id": "cmo3nbwjm001pguq147ylogg0",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.266Z",
+          "content": {
+            "forms": [
+              {
+                "form": "دَ",
+                "vowel": "fatha",
+                "audioText": "دَ"
+              },
+              {
+                "form": "دِ",
+                "vowel": "kasra",
+                "audioText": "دِ"
+              },
+              {
+                "form": "دُ",
+                "vowel": "damma",
+                "audioText": "دُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "د",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjm001qguq1df0icno2",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.266Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "د",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjm001rguq17rl51m6i",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.266Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "دُبٌّ",
+                "emoji": "🐻",
+                "letter": "د",
+                "meaning": "bear",
+                "audioText": "دُبٌّ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjn001tguq1pojjjnkd",
+      "slug": "letter-dhal",
+      "title": "الْحَرْفُ: ذَالٌ",
+      "description": "Meet the letter ذ (ذَالٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 13,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.268Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjn001uguq1ekc2i6i6",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.268Z",
+          "content": {
+            "name": "ذَالٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ذ",
+            "audioText": "ذَالٌ",
+            "transliteration": "dhal"
+          }
+        },
+        {
+          "id": "cmo3nbwjn001vguq1n4osi114",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.268Z",
+          "content": {
+            "forms": [
+              {
+                "form": "ذَ",
+                "vowel": "fatha",
+                "audioText": "ذَ"
+              },
+              {
+                "form": "ذِ",
+                "vowel": "kasra",
+                "audioText": "ذِ"
+              },
+              {
+                "form": "ذُ",
+                "vowel": "damma",
+                "audioText": "ذُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ذ",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjn001wguq1z9fclui7",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.268Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ذ",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjn001xguq1gl9ymr29",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.268Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "ذِئْبٌ",
+                "emoji": "🐺",
+                "letter": "ذ",
+                "meaning": "wolf",
+                "audioText": "ذِئْبٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjo001zguq185seycro",
+      "slug": "letter-ra",
+      "title": "الْحَرْفُ: رَاءٌ",
+      "description": "Meet the letter ر (رَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 14,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.269Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjo0020guq1gn5vs3e8",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.269Z",
+          "content": {
+            "name": "رَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ر",
+            "audioText": "رَاءٌ",
+            "transliteration": "ra"
+          }
+        },
+        {
+          "id": "cmo3nbwjo0021guq1icf1mbx9",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.269Z",
+          "content": {
+            "forms": [
+              {
+                "form": "رَ",
+                "vowel": "fatha",
+                "audioText": "رَ"
+              },
+              {
+                "form": "رِ",
+                "vowel": "kasra",
+                "audioText": "رِ"
+              },
+              {
+                "form": "رُ",
+                "vowel": "damma",
+                "audioText": "رُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ر",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjo0022guq1q2tuqc3m",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.269Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ر",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjo0023guq1comq2rte",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.269Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "رُمَّانٌ",
+                "emoji": "🍎",
+                "letter": "ر",
+                "meaning": "pomegranate",
+                "audioText": "رُمَّانٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjq0025guq1b4hk2rqx",
+      "slug": "letter-zay",
+      "title": "الْحَرْفُ: زَايٌ",
+      "description": "Meet the letter ز (زَايٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 15,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.270Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjq0026guq1cx6qwp8y",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.270Z",
+          "content": {
+            "name": "زَايٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ز",
+            "audioText": "زَايٌ",
+            "transliteration": "zay"
+          }
+        },
+        {
+          "id": "cmo3nbwjq0027guq1megb24mf",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.270Z",
+          "content": {
+            "forms": [
+              {
+                "form": "زَ",
+                "vowel": "fatha",
+                "audioText": "زَ"
+              },
+              {
+                "form": "زِ",
+                "vowel": "kasra",
+                "audioText": "زِ"
+              },
+              {
+                "form": "زُ",
+                "vowel": "damma",
+                "audioText": "زُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ز",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjq0028guq1ndrh03kt",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.270Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ز",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjq0029guq1k8htxg7o",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.270Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "زَرَافَةٌ",
+                "emoji": "🦒",
+                "letter": "ز",
+                "meaning": "giraffe",
+                "audioText": "زَرَافَةٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjr002bguq1euvugmhn",
+      "slug": "letter-sin",
+      "title": "الْحَرْفُ: سِينٌ",
+      "description": "Meet the letter س (سِينٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 16,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.271Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjr002cguq1idz0qvks",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.271Z",
+          "content": {
+            "name": "سِينٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "س",
+            "audioText": "سِينٌ",
+            "transliteration": "sin"
+          }
+        },
+        {
+          "id": "cmo3nbwjr002dguq1jvixczid",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.271Z",
+          "content": {
+            "forms": [
+              {
+                "form": "سَ",
+                "vowel": "fatha",
+                "audioText": "سَ"
+              },
+              {
+                "form": "سِ",
+                "vowel": "kasra",
+                "audioText": "سِ"
+              },
+              {
+                "form": "سُ",
+                "vowel": "damma",
+                "audioText": "سُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "س",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjr002eguq1cm529lwr",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.271Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "س",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjr002fguq12nce5g75",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.271Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "سَمَكَةٌ",
+                "emoji": "🐟",
+                "letter": "س",
+                "meaning": "fish",
+                "audioText": "سَمَكَةٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjs002hguq1jwafsjcn",
+      "slug": "letter-shin",
+      "title": "الْحَرْفُ: شِينٌ",
+      "description": "Meet the letter ش (شِينٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 17,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.273Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjs002iguq1tm4uv4va",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.273Z",
+          "content": {
+            "name": "شِينٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ش",
+            "audioText": "شِينٌ",
+            "transliteration": "shin"
+          }
+        },
+        {
+          "id": "cmo3nbwjs002jguq17a85bxqg",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.273Z",
+          "content": {
+            "forms": [
+              {
+                "form": "شَ",
+                "vowel": "fatha",
+                "audioText": "شَ"
+              },
+              {
+                "form": "شِ",
+                "vowel": "kasra",
+                "audioText": "شِ"
+              },
+              {
+                "form": "شُ",
+                "vowel": "damma",
+                "audioText": "شُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ش",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjt002kguq1zdvjciqu",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.273Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ش",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjt002lguq1e0w8c6sk",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.273Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "شَمْسٌ",
+                "emoji": "☀️",
+                "letter": "ش",
+                "meaning": "sun",
+                "audioText": "شَمْسٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwju002nguq17obe0222",
+      "slug": "letter-sad",
+      "title": "الْحَرْفُ: صَادٌ",
+      "description": "Meet the letter ص (صَادٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 18,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.274Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwju002oguq1iwkmxwx8",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.274Z",
+          "content": {
+            "name": "صَادٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ص",
+            "audioText": "صَادٌ",
+            "transliteration": "sad"
+          }
+        },
+        {
+          "id": "cmo3nbwju002pguq1m1fda1o3",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.274Z",
+          "content": {
+            "forms": [
+              {
+                "form": "صَ",
+                "vowel": "fatha",
+                "audioText": "صَ"
+              },
+              {
+                "form": "صِ",
+                "vowel": "kasra",
+                "audioText": "صِ"
+              },
+              {
+                "form": "صُ",
+                "vowel": "damma",
+                "audioText": "صُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ص",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwju002qguq1g7emg000",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.274Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ص",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwju002rguq1s2vnqcvk",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.274Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "صَقْرٌ",
+                "emoji": "🦅",
+                "letter": "ص",
+                "meaning": "falcon",
+                "audioText": "صَقْرٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjv002tguq1m6kv3p0z",
+      "slug": "letter-dad",
+      "title": "الْحَرْفُ: ضَادٌ",
+      "description": "Meet the letter ض (ضَادٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 19,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.276Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjv002uguq1o1225n7s",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.276Z",
+          "content": {
+            "name": "ضَادٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ض",
+            "audioText": "ضَادٌ",
+            "transliteration": "dad"
+          }
+        },
+        {
+          "id": "cmo3nbwjv002vguq1pvmr7sh8",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.276Z",
+          "content": {
+            "forms": [
+              {
+                "form": "ضَ",
+                "vowel": "fatha",
+                "audioText": "ضَ"
+              },
+              {
+                "form": "ضِ",
+                "vowel": "kasra",
+                "audioText": "ضِ"
+              },
+              {
+                "form": "ضُ",
+                "vowel": "damma",
+                "audioText": "ضُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ض",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjv002wguq1gt07c9dc",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.276Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ض",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjv002xguq1plnd5csh",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.276Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "ضِفْدَعٌ",
+                "emoji": "🐸",
+                "letter": "ض",
+                "meaning": "frog",
+                "audioText": "ضِفْدَعٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjw002zguq12xppjt1c",
+      "slug": "letter-taa-emphatic",
+      "title": "الْحَرْفُ: طَاءٌ",
+      "description": "Meet the letter ط (طَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 20,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.277Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjw0030guq1eln6bfs3",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.277Z",
+          "content": {
+            "name": "طَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ط",
+            "audioText": "طَاءٌ",
+            "transliteration": "taa-emphatic"
+          }
+        },
+        {
+          "id": "cmo3nbwjw0031guq1qil9mwfz",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.277Z",
+          "content": {
+            "forms": [
+              {
+                "form": "طَ",
+                "vowel": "fatha",
+                "audioText": "طَ"
+              },
+              {
+                "form": "طِ",
+                "vowel": "kasra",
+                "audioText": "طِ"
+              },
+              {
+                "form": "طُ",
+                "vowel": "damma",
+                "audioText": "طُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ط",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjw0032guq10b0tluwt",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.277Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ط",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjw0033guq1cwim1a9v",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.277Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "طَائِرٌ",
+                "emoji": "🐦",
+                "letter": "ط",
+                "meaning": "bird",
+                "audioText": "طَائِرٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjx0035guq10f37nk9x",
+      "slug": "letter-zaa",
+      "title": "الْحَرْفُ: ظَاءٌ",
+      "description": "Meet the letter ظ (ظَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 21,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.278Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjx0036guq1bvtw4ng9",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.278Z",
+          "content": {
+            "name": "ظَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ظ",
+            "audioText": "ظَاءٌ",
+            "transliteration": "zaa"
+          }
+        },
+        {
+          "id": "cmo3nbwjx0037guq1sundxi7h",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.278Z",
+          "content": {
+            "forms": [
+              {
+                "form": "ظَ",
+                "vowel": "fatha",
+                "audioText": "ظَ"
+              },
+              {
+                "form": "ظِ",
+                "vowel": "kasra",
+                "audioText": "ظِ"
+              },
+              {
+                "form": "ظُ",
+                "vowel": "damma",
+                "audioText": "ظُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ظ",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjx0038guq1re5u2tef",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.278Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ظ",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjx0039guq1f0k4g2tk",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.278Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "ظَبْيٌ",
+                "emoji": "🦌",
+                "letter": "ظ",
+                "meaning": "gazelle",
+                "audioText": "ظَبْيٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwjy003bguq1igkggyg8",
+      "slug": "letter-ain",
+      "title": "الْحَرْفُ: عَيْنٌ",
+      "description": "Meet the letter ع (عَيْنٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 22,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.279Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwjy003cguq1ow8exufm",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.279Z",
+          "content": {
+            "name": "عَيْنٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ع",
+            "audioText": "عَيْنٌ",
+            "transliteration": "ain"
+          }
+        },
+        {
+          "id": "cmo3nbwjy003dguq119c5at37",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.279Z",
+          "content": {
+            "forms": [
+              {
+                "form": "عَ",
+                "vowel": "fatha",
+                "audioText": "عَ"
+              },
+              {
+                "form": "عِ",
+                "vowel": "kasra",
+                "audioText": "عِ"
+              },
+              {
+                "form": "عُ",
+                "vowel": "damma",
+                "audioText": "عُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ع",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwjy003eguq1su6uj6nd",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.279Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ع",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwjy003fguq14um1aj91",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.279Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "عَيْنٌ",
+                "emoji": "👁️",
+                "letter": "ع",
+                "meaning": "eye",
+                "audioText": "عَيْنٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk0003hguq1aout2xf6",
+      "slug": "letter-ghain",
+      "title": "الْحَرْفُ: غَيْنٌ",
+      "description": "Meet the letter غ (غَيْنٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 23,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.280Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk0003iguq15ialhycg",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.280Z",
+          "content": {
+            "name": "غَيْنٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "غ",
+            "audioText": "غَيْنٌ",
+            "transliteration": "ghain"
+          }
+        },
+        {
+          "id": "cmo3nbwk0003jguq1bu8d7rmc",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.280Z",
+          "content": {
+            "forms": [
+              {
+                "form": "غَ",
+                "vowel": "fatha",
+                "audioText": "غَ"
+              },
+              {
+                "form": "غِ",
+                "vowel": "kasra",
+                "audioText": "غِ"
+              },
+              {
+                "form": "غُ",
+                "vowel": "damma",
+                "audioText": "غُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "غ",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk0003kguq1ubr924hc",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.280Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "غ",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk0003lguq1fkfj1dgd",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.280Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "غُرَابٌ",
+                "emoji": "🐦",
+                "letter": "غ",
+                "meaning": "crow",
+                "audioText": "غُرَابٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk1003nguq1cssecief",
+      "slug": "letter-faa",
+      "title": "الْحَرْفُ: فَاءٌ",
+      "description": "Meet the letter ف (فَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 24,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.282Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk1003oguq1k3vsaqly",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.282Z",
+          "content": {
+            "name": "فَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ف",
+            "audioText": "فَاءٌ",
+            "transliteration": "faa"
+          }
+        },
+        {
+          "id": "cmo3nbwk1003pguq15ikcpyz4",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.282Z",
+          "content": {
+            "forms": [
+              {
+                "form": "فَ",
+                "vowel": "fatha",
+                "audioText": "فَ"
+              },
+              {
+                "form": "فِ",
+                "vowel": "kasra",
+                "audioText": "فِ"
+              },
+              {
+                "form": "فُ",
+                "vowel": "damma",
+                "audioText": "فُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ف",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk1003qguq18yjbpgk4",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.282Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ف",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk1003rguq1cef3tgwh",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.282Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "فِيلٌ",
+                "emoji": "🐘",
+                "letter": "ف",
+                "meaning": "elephant",
+                "audioText": "فِيلٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk2003tguq19tlkgfnd",
+      "slug": "letter-qaf",
+      "title": "الْحَرْفُ: قَافٌ",
+      "description": "Meet the letter ق (قَافٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 25,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.283Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk2003uguq1wmf429t1",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.283Z",
+          "content": {
+            "name": "قَافٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ق",
+            "audioText": "قَافٌ",
+            "transliteration": "qaf"
+          }
+        },
+        {
+          "id": "cmo3nbwk2003vguq15cyl2qfd",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.283Z",
+          "content": {
+            "forms": [
+              {
+                "form": "قَ",
+                "vowel": "fatha",
+                "audioText": "قَ"
+              },
+              {
+                "form": "قِ",
+                "vowel": "kasra",
+                "audioText": "قِ"
+              },
+              {
+                "form": "قُ",
+                "vowel": "damma",
+                "audioText": "قُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ق",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk2003wguq1vqbjbk6s",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.283Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ق",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk2003xguq148bgid7w",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.283Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "قِطَّةٌ",
+                "emoji": "🐱",
+                "letter": "ق",
+                "meaning": "cat",
+                "audioText": "قِطَّةٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk3003zguq139aoomnx",
+      "slug": "letter-kaf",
+      "title": "الْحَرْفُ: كَافٌ",
+      "description": "Meet the letter ك (كَافٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 26,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.284Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk30040guq10uhay5tk",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.284Z",
+          "content": {
+            "name": "كَافٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ك",
+            "audioText": "كَافٌ",
+            "transliteration": "kaf"
+          }
+        },
+        {
+          "id": "cmo3nbwk30041guq1irtizel4",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.284Z",
+          "content": {
+            "forms": [
+              {
+                "form": "كَ",
+                "vowel": "fatha",
+                "audioText": "كَ"
+              },
+              {
+                "form": "كِ",
+                "vowel": "kasra",
+                "audioText": "كِ"
+              },
+              {
+                "form": "كُ",
+                "vowel": "damma",
+                "audioText": "كُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ك",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk40042guq130uj5seb",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.284Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ك",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk40043guq18ysrgikt",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.284Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "كَلْبٌ",
+                "emoji": "🐕",
+                "letter": "ك",
+                "meaning": "dog",
+                "audioText": "كَلْبٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk50045guq1uqeuifhx",
+      "slug": "letter-lam",
+      "title": "الْحَرْفُ: لَامٌ",
+      "description": "Meet the letter ل (لَامٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 27,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.285Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk50046guq1q0ttl7os",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.285Z",
+          "content": {
+            "name": "لَامٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ل",
+            "audioText": "لَامٌ",
+            "transliteration": "lam"
+          }
+        },
+        {
+          "id": "cmo3nbwk50047guq172vrp4d3",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.285Z",
+          "content": {
+            "forms": [
+              {
+                "form": "لَ",
+                "vowel": "fatha",
+                "audioText": "لَ"
+              },
+              {
+                "form": "لِ",
+                "vowel": "kasra",
+                "audioText": "لِ"
+              },
+              {
+                "form": "لُ",
+                "vowel": "damma",
+                "audioText": "لُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ل",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk50048guq1d7l102qa",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.285Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ل",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk50049guq1lufjqnqe",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.285Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "لَيْمُونٌ",
+                "emoji": "🍋",
+                "letter": "ل",
+                "meaning": "lemon",
+                "audioText": "لَيْمُونٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk6004bguq1hcjtx7lw",
+      "slug": "letter-mim",
+      "title": "الْحَرْفُ: مِيمٌ",
+      "description": "Meet the letter م (مِيمٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 28,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.286Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk6004cguq15ej6td3q",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.286Z",
+          "content": {
+            "name": "مِيمٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "م",
+            "audioText": "مِيمٌ",
+            "transliteration": "mim"
+          }
+        },
+        {
+          "id": "cmo3nbwk6004dguq1i1cuhkdl",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.286Z",
+          "content": {
+            "forms": [
+              {
+                "form": "مَ",
+                "vowel": "fatha",
+                "audioText": "مَ"
+              },
+              {
+                "form": "مِ",
+                "vowel": "kasra",
+                "audioText": "مِ"
+              },
+              {
+                "form": "مُ",
+                "vowel": "damma",
+                "audioText": "مُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "م",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk6004eguq1zj4y1v0y",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.286Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "م",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk6004fguq1f3fe48z0",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.286Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "مَوْزٌ",
+                "emoji": "🍌",
+                "letter": "م",
+                "meaning": "banana",
+                "audioText": "مَوْزٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk7004hguq1256rgskv",
+      "slug": "letter-nun",
+      "title": "الْحَرْفُ: نُونٌ",
+      "description": "Meet the letter ن (نُونٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 29,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.287Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk7004iguq1hbxx0plv",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.287Z",
+          "content": {
+            "name": "نُونٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ن",
+            "audioText": "نُونٌ",
+            "transliteration": "nun"
+          }
+        },
+        {
+          "id": "cmo3nbwk7004jguq1ka553259",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.287Z",
+          "content": {
+            "forms": [
+              {
+                "form": "نَ",
+                "vowel": "fatha",
+                "audioText": "نَ"
+              },
+              {
+                "form": "نِ",
+                "vowel": "kasra",
+                "audioText": "نِ"
+              },
+              {
+                "form": "نُ",
+                "vowel": "damma",
+                "audioText": "نُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ن",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk7004kguq1x9xx0riz",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.287Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ن",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk7004lguq1h0g7jfuq",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.287Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "نَحْلَةٌ",
+                "emoji": "🐝",
+                "letter": "ن",
+                "meaning": "bee",
+                "audioText": "نَحْلَةٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk8004nguq1suof2i63",
+      "slug": "letter-haa-soft",
+      "title": "الْحَرْفُ: هَاءٌ",
+      "description": "Meet the letter ه (هَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 30,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.288Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk8004oguq1sx5ejx2q",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.288Z",
+          "content": {
+            "name": "هَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ه",
+            "audioText": "هَاءٌ",
+            "transliteration": "haa-soft"
+          }
+        },
+        {
+          "id": "cmo3nbwk8004pguq1vzx20k46",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.288Z",
+          "content": {
+            "forms": [
+              {
+                "form": "هَ",
+                "vowel": "fatha",
+                "audioText": "هَ"
+              },
+              {
+                "form": "هِ",
+                "vowel": "kasra",
+                "audioText": "هِ"
+              },
+              {
+                "form": "هُ",
+                "vowel": "damma",
+                "audioText": "هُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ه",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk8004qguq1jggaeu0y",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.288Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ه",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk8004rguq1mu7wlttp",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.288Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "هُدْهُدٌ",
+                "emoji": "🐦",
+                "letter": "ه",
+                "meaning": "hoopoe",
+                "audioText": "هُدْهُدٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwk9004tguq1oxtej7sn",
+      "slug": "letter-waw",
+      "title": "الْحَرْفُ: وَاوٌ",
+      "description": "Meet the letter و (وَاوٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 31,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.289Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwk9004uguq1hta9p255",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.289Z",
+          "content": {
+            "name": "وَاوٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "و",
+            "audioText": "وَاوٌ",
+            "transliteration": "waw"
+          }
+        },
+        {
+          "id": "cmo3nbwk9004vguq1jovwja1p",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.289Z",
+          "content": {
+            "forms": [
+              {
+                "form": "وَ",
+                "vowel": "fatha",
+                "audioText": "وَ"
+              },
+              {
+                "form": "وِ",
+                "vowel": "kasra",
+                "audioText": "وِ"
+              },
+              {
+                "form": "وُ",
+                "vowel": "damma",
+                "audioText": "وُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "و",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwk9004wguq1tqk2idjl",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.289Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "و",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwk9004xguq143u08asw",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.289Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "وَرْدَةٌ",
+                "emoji": "🌹",
+                "letter": "و",
+                "meaning": "rose",
+                "audioText": "وَرْدَةٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cmo3nbwka004zguq1l2a5uag0",
+      "slug": "letter-yaa",
+      "title": "الْحَرْفُ: يَاءٌ",
+      "description": "Meet the letter ي (يَاءٌ).",
+      "icon": "🔤",
+      "level": "basic",
+      "order": 32,
+      "isLocked": false,
+      "createdAt": "2026-04-18T01:16:11.291Z",
+      "themeId": "cmnt0ggkx00006iuhg4f5x8me",
+      "sections": [
+        {
+          "id": "cmo3nbwka0050guq119ojzs5f",
+          "type": "letter_intro",
+          "order": 1,
+          "createdAt": "2026-04-18T01:16:11.291Z",
+          "content": {
+            "name": "يَاءٌ",
+            "title": "تَعَرَّفْ عَلَى الْحَرْفِ",
+            "letter": "ي",
+            "audioText": "يَاءٌ",
+            "transliteration": "yaa"
+          }
+        },
+        {
+          "id": "cmo3nbwka0051guq13wy7m5xb",
+          "type": "letter_vowels",
+          "order": 2,
+          "createdAt": "2026-04-18T01:16:11.291Z",
+          "content": {
+            "forms": [
+              {
+                "form": "يَ",
+                "vowel": "fatha",
+                "audioText": "يَ"
+              },
+              {
+                "form": "يِ",
+                "vowel": "kasra",
+                "audioText": "يِ"
+              },
+              {
+                "form": "يُ",
+                "vowel": "damma",
+                "audioText": "يُ"
+              }
+            ],
+            "title": "الْحَرَكَاتُ",
+            "letter": "ي",
+            "instructions": "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ"
+          }
+        },
+        {
+          "id": "cmo3nbwka0052guq1ivp6gqol",
+          "type": "letter_coloring",
+          "order": 3,
+          "createdAt": "2026-04-18T01:16:11.291Z",
+          "content": {
+            "title": "لَوِّنِ الْحَرْفَ",
+            "colors": [
+              {
+                "hex": "#ef4444",
+                "name": "أَحْمَرُ",
+                "audioText": "أَحْمَرُ"
+              },
+              {
+                "hex": "#3b82f6",
+                "name": "أَزْرَقُ",
+                "audioText": "أَزْرَقُ"
+              },
+              {
+                "hex": "#22c55e",
+                "name": "أَخْضَرُ",
+                "audioText": "أَخْضَرُ"
+              }
+            ],
+            "letter": "ي",
+            "instructions": "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ"
+          }
+        },
+        {
+          "id": "cmo3nbwka0053guq1gxesjxnr",
+          "type": "letter_word_match",
+          "order": 4,
+          "createdAt": "2026-04-18T01:16:11.291Z",
+          "content": {
+            "title": "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
+            "words": [
+              {
+                "word": "يَدٌ",
+                "emoji": "✋",
+                "letter": "ي",
+                "meaning": "hand",
+                "audioText": "يَدٌ"
+              }
+            ],
+            "instructions": "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا"
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "legacyLessons": 28,
+    "legacySections": 112,
+    "sectionTypeBreakdown": {
+      "letter_intro": 28,
+      "letter_vowels": 28,
+      "letter_coloring": 28,
+      "letter_word_match": 28
+    },
+    "relatedProgressRefs": 0
+  },
+  "preservedUnifiedAlphabet": {
+    "id": "cmo3nbwiy000eguq1phyawou5",
+    "slug": "alphabet",
+    "title": "الْأَبْجَدِيَّةُ الْعَرَبِيَّةُ",
+    "order": 4,
+    "sectionCount": 1
+  }
+}
