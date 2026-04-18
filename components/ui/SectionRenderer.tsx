@@ -10,11 +10,6 @@ import InteractiveColorWorld from "./InteractiveColorWorld";
 import ShapesWorld from "./ShapesWorld";
 import ShapeDrawSection from "./ShapeDrawSection";
 import ShapeColorSection from "./ShapeColorSection";
-import LetterIntro from "./LetterIntro";
-import LetterVowels from "./LetterVowels";
-import LetterColoring from "./LetterColoring";
-import LetterTracing from "./LetterTracing";
-import LetterWordMatch from "./LetterWordMatch";
 import FamilyIntro from "./FamilyIntro";
 import FamilyTree from "./FamilyTree";
 import FamilyMatchGame from "./FamilyMatchGame";
@@ -53,16 +48,6 @@ export default function SectionRenderer({ section }: { section: Section }) {
       return <ShapeDrawSection section={section.content} />;
     case "color_shapes":
       return <ShapeColorSection section={section.content} />;
-    case "letter_intro":
-      return <LetterIntro section={section.content} />;
-    case "letter_vowels":
-      return <LetterVowels section={section.content} />;
-    case "letter_coloring":
-      return <LetterColoring section={section.content} />;
-    case "letter_tracing":
-      return <LetterTracing section={section.content} />;
-    case "letter_word_match":
-      return <LetterWordMatch section={section.content} />;
     case "family_intro":
       return <FamilyIntro section={section.content} />;
     case "family_tree":

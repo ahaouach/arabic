@@ -15,7 +15,13 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { numbersLessonContent } from "./seeds/numbersLesson.seed";
+import { colorsLessonContent } from "./seeds/colorsLesson.seed";
+import { shapesLessonContent } from "./seeds/shapesLesson.seed";
+import { alphabetLessonContent } from "./seeds/alphabetLesson.seed";
 import type { NumbersLessonSection } from "@/lib/types/numbersLesson.types";
+import type { ColorsLessonSection } from "@/lib/types/colorsLesson.types";
+import type { ShapesLessonSection } from "@/lib/types/shapesLesson.types";
+import type { AlphabetLessonSection } from "@/lib/types/alphabetLesson.types";
 
 const prisma = new PrismaClient();
 
@@ -148,61 +154,6 @@ async function main() {
             name: string;
             kind: "circle" | "square" | "triangle" | "rectangle";
             correctColor: string;
-          }>;
-        };
-      }
-    | {
-        type: "letter_intro";
-        content: {
-          title?: string;
-          letter: string;
-          name: string;
-          audioText?: string;
-          transliteration?: string;
-        };
-      }
-    | {
-        type: "letter_vowels";
-        content: {
-          title?: string;
-          instructions?: string;
-          letter: string;
-          forms: Array<{
-            form: string;
-            vowel: "fatha" | "kasra" | "damma" | "sukun";
-            audioText?: string;
-          }>;
-        };
-      }
-    | {
-        type: "letter_coloring";
-        content: {
-          title?: string;
-          instructions?: string;
-          letter: string;
-          colors: Array<{ name: string; hex: string; audioText?: string }>;
-        };
-      }
-    | {
-        type: "letter_tracing";
-        content: {
-          title?: string;
-          instructions?: string;
-          letter: string;
-          points: Array<{ x: number; y: number }>;
-        };
-      }
-    | {
-        type: "letter_word_match";
-        content: {
-          title?: string;
-          instructions?: string;
-          words: Array<{
-            word: string;
-            letter: string;
-            meaning?: string;
-            emoji?: string;
-            audioText?: string;
           }>;
         };
       }
@@ -345,6 +296,18 @@ async function main() {
     | {
         type: "numbers_lesson";
         content: NumbersLessonSection;
+      }
+    | {
+        type: "colors_lesson";
+        content: ColorsLessonSection;
+      }
+    | {
+        type: "shapes_lesson";
+        content: ShapesLessonSection;
+      }
+    | {
+        type: "alphabet_lesson";
+        content: AlphabetLessonSection;
       };
 
   interface LessonSeed {
@@ -358,242 +321,6 @@ async function main() {
     isLocked?: boolean;
     sections?: SectionInput[];
   }
-
-  // ---- Arabic alphabet data ------------------------------------------------
-  // Each entry drives a full 5-step letter lesson (intro / vowels / coloring
-  // / tracing / word match). Adding a new letter is as simple as pushing a
-  // new row here.
-  interface AlphabetLetter {
-    letter: string;
-    name: string;
-    trans: string;
-    forms: [string, string, string]; // fatha, kasra, damma
-    word: string;
-    meaning: string;
-    emoji: string;
-    // Ordered tracing dots (0-100 coords) approximating the letter's main
-    // stroke. Arabic is read right-to-left, so most paths start from the
-    // right side. The ghost letter in the background gives the real visual
-    // reference — these dots just need to feel shaped like the letter.
-    tracingPoints: Array<{ x: number; y: number }>;
-  }
-
-  // Common skeleton shapes shared across letter families.
-  const SHAPE = {
-    vertical: [
-      { x: 50, y: 18 },
-      { x: 50, y: 40 },
-      { x: 50, y: 62 },
-      { x: 50, y: 85 },
-    ],
-    bowl: [
-      { x: 78, y: 42 },
-      { x: 62, y: 58 },
-      { x: 50, y: 62 },
-      { x: 38, y: 58 },
-      { x: 22, y: 42 },
-    ],
-    camShape: [
-      { x: 72, y: 30 },
-      { x: 62, y: 45 },
-      { x: 50, y: 58 },
-      { x: 35, y: 68 },
-      { x: 22, y: 55 },
-    ],
-    dalShape: [
-      { x: 68, y: 32 },
-      { x: 68, y: 50 },
-      { x: 52, y: 60 },
-      { x: 35, y: 62 },
-    ],
-    raShape: [
-      { x: 65, y: 32 },
-      { x: 58, y: 50 },
-      { x: 45, y: 65 },
-      { x: 32, y: 78 },
-    ],
-    humps: [
-      { x: 80, y: 48 },
-      { x: 68, y: 58 },
-      { x: 58, y: 48 },
-      { x: 46, y: 58 },
-      { x: 35, y: 48 },
-      { x: 22, y: 58 },
-    ],
-    sadShape: [
-      { x: 80, y: 40 },
-      { x: 68, y: 55 },
-      { x: 52, y: 58 },
-      { x: 35, y: 52 },
-      { x: 25, y: 38 },
-      { x: 32, y: 68 },
-      { x: 20, y: 78 },
-    ],
-    taaEmphatic: [
-      { x: 72, y: 20 },
-      { x: 72, y: 55 },
-      { x: 55, y: 65 },
-      { x: 35, y: 60 },
-      { x: 25, y: 45 },
-    ],
-    ainShape: [
-      { x: 72, y: 28 },
-      { x: 60, y: 42 },
-      { x: 52, y: 58 },
-      { x: 38, y: 68 },
-      { x: 25, y: 58 },
-    ],
-    faaShape: [
-      { x: 68, y: 32 },
-      { x: 72, y: 48 },
-      { x: 60, y: 58 },
-      { x: 45, y: 55 },
-      { x: 32, y: 68 },
-    ],
-    kafShape: [
-      { x: 78, y: 25 },
-      { x: 60, y: 35 },
-      { x: 55, y: 55 },
-      { x: 40, y: 55 },
-      { x: 28, y: 48 },
-      { x: 28, y: 68 },
-    ],
-    lamShape: [
-      { x: 60, y: 20 },
-      { x: 58, y: 40 },
-      { x: 55, y: 58 },
-      { x: 48, y: 72 },
-      { x: 35, y: 85 },
-    ],
-    mimShape: [
-      { x: 65, y: 35 },
-      { x: 72, y: 48 },
-      { x: 62, y: 58 },
-      { x: 48, y: 55 },
-      { x: 42, y: 72 },
-      { x: 48, y: 90 },
-    ],
-    haaSoftShape: [
-      { x: 60, y: 38 },
-      { x: 68, y: 50 },
-      { x: 58, y: 62 },
-      { x: 42, y: 58 },
-      { x: 50, y: 42 },
-    ],
-    wawShape: [
-      { x: 58, y: 28 },
-      { x: 70, y: 42 },
-      { x: 58, y: 52 },
-      { x: 42, y: 48 },
-      { x: 52, y: 65 },
-      { x: 55, y: 85 },
-    ],
-  } as const;
-
-  const ALPHABET_LETTERS: AlphabetLetter[] = [
-    { letter: "ا", name: "أَلِفٌ", trans: "alif", forms: ["أَ", "إِ", "أُ"], word: "أَسَدٌ", meaning: "lion", emoji: "🦁", tracingPoints: [...SHAPE.vertical] },
-    { letter: "ب", name: "بَاءٌ", trans: "baa", forms: ["بَ", "بِ", "بُ"], word: "بَطَّةٌ", meaning: "duck", emoji: "🦆", tracingPoints: [...SHAPE.bowl] },
-    { letter: "ت", name: "تَاءٌ", trans: "taa", forms: ["تَ", "تِ", "تُ"], word: "تُفَّاحَةٌ", meaning: "apple", emoji: "🍎", tracingPoints: [...SHAPE.bowl] },
-    { letter: "ث", name: "ثَاءٌ", trans: "thaa", forms: ["ثَ", "ثِ", "ثُ"], word: "ثَعْلَبٌ", meaning: "fox", emoji: "🦊", tracingPoints: [...SHAPE.bowl] },
-    { letter: "ج", name: "جِيمٌ", trans: "jim", forms: ["جَ", "جِ", "جُ"], word: "جَمَلٌ", meaning: "camel", emoji: "🐪", tracingPoints: [...SHAPE.camShape] },
-    { letter: "ح", name: "حَاءٌ", trans: "haa", forms: ["حَ", "حِ", "حُ"], word: "حِصَانٌ", meaning: "horse", emoji: "🐎", tracingPoints: [...SHAPE.camShape] },
-    { letter: "خ", name: "خَاءٌ", trans: "khaa", forms: ["خَ", "خِ", "خُ"], word: "خُبْزٌ", meaning: "bread", emoji: "🍞", tracingPoints: [...SHAPE.camShape] },
-    { letter: "د", name: "دَالٌ", trans: "dal", forms: ["دَ", "دِ", "دُ"], word: "دُبٌّ", meaning: "bear", emoji: "🐻", tracingPoints: [...SHAPE.dalShape] },
-    { letter: "ذ", name: "ذَالٌ", trans: "dhal", forms: ["ذَ", "ذِ", "ذُ"], word: "ذِئْبٌ", meaning: "wolf", emoji: "🐺", tracingPoints: [...SHAPE.dalShape] },
-    { letter: "ر", name: "رَاءٌ", trans: "ra", forms: ["رَ", "رِ", "رُ"], word: "رُمَّانٌ", meaning: "pomegranate", emoji: "🍎", tracingPoints: [...SHAPE.raShape] },
-    { letter: "ز", name: "زَايٌ", trans: "zay", forms: ["زَ", "زِ", "زُ"], word: "زَرَافَةٌ", meaning: "giraffe", emoji: "🦒", tracingPoints: [...SHAPE.raShape] },
-    { letter: "س", name: "سِينٌ", trans: "sin", forms: ["سَ", "سِ", "سُ"], word: "سَمَكَةٌ", meaning: "fish", emoji: "🐟", tracingPoints: [...SHAPE.humps] },
-    { letter: "ش", name: "شِينٌ", trans: "shin", forms: ["شَ", "شِ", "شُ"], word: "شَمْسٌ", meaning: "sun", emoji: "☀️", tracingPoints: [...SHAPE.humps] },
-    { letter: "ص", name: "صَادٌ", trans: "sad", forms: ["صَ", "صِ", "صُ"], word: "صَقْرٌ", meaning: "falcon", emoji: "🦅", tracingPoints: [...SHAPE.sadShape] },
-    { letter: "ض", name: "ضَادٌ", trans: "dad", forms: ["ضَ", "ضِ", "ضُ"], word: "ضِفْدَعٌ", meaning: "frog", emoji: "🐸", tracingPoints: [...SHAPE.sadShape] },
-    { letter: "ط", name: "طَاءٌ", trans: "taa-emphatic", forms: ["طَ", "طِ", "طُ"], word: "طَائِرٌ", meaning: "bird", emoji: "🐦", tracingPoints: [...SHAPE.taaEmphatic] },
-    { letter: "ظ", name: "ظَاءٌ", trans: "zaa", forms: ["ظَ", "ظِ", "ظُ"], word: "ظَبْيٌ", meaning: "gazelle", emoji: "🦌", tracingPoints: [...SHAPE.taaEmphatic] },
-    { letter: "ع", name: "عَيْنٌ", trans: "ain", forms: ["عَ", "عِ", "عُ"], word: "عَيْنٌ", meaning: "eye", emoji: "👁️", tracingPoints: [...SHAPE.ainShape] },
-    { letter: "غ", name: "غَيْنٌ", trans: "ghain", forms: ["غَ", "غِ", "غُ"], word: "غُرَابٌ", meaning: "crow", emoji: "🐦", tracingPoints: [...SHAPE.ainShape] },
-    { letter: "ف", name: "فَاءٌ", trans: "faa", forms: ["فَ", "فِ", "فُ"], word: "فِيلٌ", meaning: "elephant", emoji: "🐘", tracingPoints: [...SHAPE.faaShape] },
-    { letter: "ق", name: "قَافٌ", trans: "qaf", forms: ["قَ", "قِ", "قُ"], word: "قِطَّةٌ", meaning: "cat", emoji: "🐱", tracingPoints: [...SHAPE.faaShape] },
-    { letter: "ك", name: "كَافٌ", trans: "kaf", forms: ["كَ", "كِ", "كُ"], word: "كَلْبٌ", meaning: "dog", emoji: "🐕", tracingPoints: [...SHAPE.kafShape] },
-    { letter: "ل", name: "لَامٌ", trans: "lam", forms: ["لَ", "لِ", "لُ"], word: "لَيْمُونٌ", meaning: "lemon", emoji: "🍋", tracingPoints: [...SHAPE.lamShape] },
-    { letter: "م", name: "مِيمٌ", trans: "mim", forms: ["مَ", "مِ", "مُ"], word: "مَوْزٌ", meaning: "banana", emoji: "🍌", tracingPoints: [...SHAPE.mimShape] },
-    { letter: "ن", name: "نُونٌ", trans: "nun", forms: ["نَ", "نِ", "نُ"], word: "نَحْلَةٌ", meaning: "bee", emoji: "🐝", tracingPoints: [...SHAPE.bowl] },
-    { letter: "ه", name: "هَاءٌ", trans: "haa-soft", forms: ["هَ", "هِ", "هُ"], word: "هُدْهُدٌ", meaning: "hoopoe", emoji: "🐦", tracingPoints: [...SHAPE.haaSoftShape] },
-    { letter: "و", name: "وَاوٌ", trans: "waw", forms: ["وَ", "وِ", "وُ"], word: "وَرْدَةٌ", meaning: "rose", emoji: "🌹", tracingPoints: [...SHAPE.wawShape] },
-    { letter: "ي", name: "يَاءٌ", trans: "yaa", forms: ["يَ", "يِ", "يُ"], word: "يَدٌ", meaning: "hand", emoji: "✋", tracingPoints: [...SHAPE.bowl] },
-  ];
-
-  // Shared palette so we don't repeat JSON 28 times.
-  const LETTER_PALETTE: Array<{ name: string; hex: string; audioText: string }> = [
-    { name: "أَحْمَرُ", hex: "#ef4444", audioText: "أَحْمَرُ" },
-    { name: "أَزْرَقُ", hex: "#3b82f6", audioText: "أَزْرَقُ" },
-    { name: "أَخْضَرُ", hex: "#22c55e", audioText: "أَخْضَرُ" },
-  ];
-
-  function buildLetterLesson(l: AlphabetLetter, order: number): LessonSeed {
-    return {
-      themeSlug: "arabic",
-      slug: `letter-${l.trans}`,
-      title: `الْحَرْفُ: ${l.name}`,
-      description: `Meet the letter ${l.letter} (${l.name}).`,
-      icon: "🔤",
-      level: "basic",
-      order,
-      sections: [
-        {
-          type: "letter_intro",
-          content: {
-            title: "تَعَرَّفْ عَلَى الْحَرْفِ",
-            letter: l.letter,
-            name: l.name,
-            audioText: l.name,
-            transliteration: l.trans,
-          },
-        },
-        {
-          type: "letter_vowels",
-          content: {
-            title: "الْحَرَكَاتُ",
-            instructions: "اِضْغَطْ عَلَى كُلِّ حَرَكَةٍ لِتَسْمَعَ الصَّوْتَ",
-            letter: l.letter,
-            forms: [
-              { form: l.forms[0], vowel: "fatha", audioText: l.forms[0] },
-              { form: l.forms[1], vowel: "kasra", audioText: l.forms[1] },
-              { form: l.forms[2], vowel: "damma", audioText: l.forms[2] },
-            ],
-          },
-        },
-        {
-          type: "letter_coloring",
-          content: {
-            title: "لَوِّنِ الْحَرْفَ",
-            instructions: "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الْحَرْفِ",
-            letter: l.letter,
-            colors: LETTER_PALETTE,
-          },
-        },
-        {
-          type: "letter_word_match",
-          content: {
-            title: "كَلِمَةٌ تَبْدَأُ بِالْحَرْفِ",
-            instructions: "اِضْغَطْ عَلَى الْكَلِمَةِ لِتَسْمَعَهَا",
-            words: [
-              {
-                word: l.word,
-                letter: l.letter,
-                meaning: l.meaning,
-                emoji: l.emoji,
-                audioText: l.word,
-              },
-            ],
-          },
-        },
-      ],
-    };
-  }
-
-  // Generated letter lessons occupy orders 4..31 (28 letters).
-  const letterLessons: LessonSeed[] = ALPHABET_LETTERS.map((l, i) =>
-    buildLetterLesson(l, 4 + i),
-  );
 
   const lessonSeeds: LessonSeed[] = [
     // -------- Arabic (basic, gamified catalogue) --------
@@ -619,135 +346,60 @@ async function main() {
     {
       themeSlug: "arabic",
       slug: "colors",
-      title: "الأَلْوَانُ",
-      description: "Play, paint, and learn Arabic colors.",
+      title: "عَالَمُ الْأَلْوَانِ",
+      description: "Discover, listen, and paint with 10 colours in Arabic.",
       icon: "🎨",
       level: "basic",
       order: 2,
       sections: [
+        // Single `colors_lesson` section — content is the idempotent JSON
+        // object defined in ./seeds/colorsLesson.seed.ts, which is the
+        // only place to edit lesson content (or do it live via
+        // `npm run db:studio`).
         {
-          type: "interactive_color_world",
-          content: {
-            title: "عَالَمُ الأَلْوَانِ",
-            instructions: "مَرِّرْ مُؤَشِّرَكَ أَوِ اضْغَطْ عَلَى كُلِّ لَوْنٍ لِتَسْمَعَ اسْمَهُ!",
-            colors: [
-              { name: "أَحْمَرُ", hex: "#ef4444", audioText: "أَحْمَرُ", transliteration: "ahmaru", example: "🍎" },
-              { name: "أَزْرَقُ", hex: "#3b82f6", audioText: "أَزْرَقُ", transliteration: "azraqu", example: "🐳" },
-              { name: "أَخْضَرُ", hex: "#22c55e", audioText: "أَخْضَرُ", transliteration: "akhdaru", example: "🌳" },
-              { name: "أَصْفَرُ", hex: "#facc15", audioText: "أَصْفَرُ", transliteration: "asfaru", example: "🌟" },
-              { name: "أَسْوَدُ", hex: "#111827", audioText: "أَسْوَدُ", transliteration: "aswadu", example: "🐈‍⬛" },
-              { name: "أَبْيَضُ", hex: "#f8fafc", audioText: "أَبْيَضُ", transliteration: "abyadu", example: "☁️" },
-            ],
-          },
-        },
-        {
-          type: "paint_game",
-          content: {
-            title: "اِلْعَبْ وَتَعَلَّمِ الأَلْوَانَ",
-            instructions: "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الصُّورَةِ الصَّحِيحَةِ",
-            colors: [
-              { name: "أَحْمَرُ", hex: "#ef4444", audioText: "أَحْمَرُ" },
-              { name: "أَزْرَقُ", hex: "#3b82f6", audioText: "أَزْرَقُ" },
-              { name: "أَخْضَرُ", hex: "#22c55e", audioText: "أَخْضَرُ" },
-              { name: "أَصْفَرُ", hex: "#facc15", audioText: "أَصْفَرُ" },
-              { name: "أَسْوَدُ", hex: "#111827", audioText: "أَسْوَدُ" },
-              { name: "أَبْيَضُ", hex: "#f8fafc", audioText: "أَبْيَضُ" },
-            ],
-            objects: [
-              { name: "تُفَّاحَةٌ", kind: "apple", correctColor: "أَحْمَرُ" },
-              { name: "سَيَّارَةٌ", kind: "car", correctColor: "أَزْرَقُ" },
-              { name: "بَيْتٌ", kind: "house", correctColor: "أَخْضَرُ" },
-              { name: "شَمْسٌ", kind: "sun", correctColor: "أَصْفَرُ" },
-              { name: "سَمَكَةٌ", kind: "fish", correctColor: "أَزْرَقُ" },
-              { name: "نَجْمَةٌ", kind: "star", correctColor: "أَصْفَرُ" },
-            ],
-          },
+          type: "colors_lesson",
+          content: colorsLessonContent,
         },
       ],
     },
     {
       themeSlug: "arabic",
       slug: "shapes",
-      title: "الأَشْكَالُ الْهَنْدَسِيَّةُ",
+      title: "عَالَمُ الْأَشْكَالِ",
       description: "Learn geometric shapes in Arabic with sound.",
-      icon: "🔺",
+      icon: "🔷",
       level: "basic",
       order: 3,
       sections: [
+        // Single `shapes_lesson` section — content is the idempotent JSON
+        // object defined in ./seeds/shapesLesson.seed.ts, which is the
+        // only place to edit lesson content (or do it live via
+        // `npm run db:studio`).
         {
-          type: "interactive_shapes_world",
-          content: {
-            title: "عَالَمُ الأَشْكَالِ",
-            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ شَكْلٍ لِتَسْمَعَ اسْمَهُ!",
-            shapes: [
-              { name: "دَائِرَةٌ", emoji: "⚪", audioText: "دَائِرَةٌ", transliteration: "daairatun" },
-              { name: "مُرَبَّعٌ", emoji: "⬜", audioText: "مُرَبَّعٌ", transliteration: "murabbaun" },
-              { name: "مُثَلَّثٌ", emoji: "🔺", audioText: "مُثَلَّثٌ", transliteration: "muthallathun" },
-              { name: "مُسْتَطِيلٌ", emoji: "▭", audioText: "مُسْتَطِيلٌ", transliteration: "mustatilun" },
-            ],
-          },
-        },
-        {
-          type: "draw_shapes",
-          content: {
-            title: "اِرْسُمْ الأَشْكَالَ",
-            instructions: "اِضْغَطْ عَلَى النِّقَاطِ بِالتَّرْتِيبِ لِتَرْسُمَ الشَّكْلَ",
-            challenges: [
-              {
-                name: "مُرَبَّعٌ",
-                audioText: "مُرَبَّعٌ",
-                dots: [
-                  { x: 25, y: 25 },
-                  { x: 75, y: 25 },
-                  { x: 75, y: 75 },
-                  { x: 25, y: 75 },
-                ],
-              },
-              {
-                name: "مُثَلَّثٌ",
-                audioText: "مُثَلَّثٌ",
-                dots: [
-                  { x: 50, y: 18 },
-                  { x: 85, y: 80 },
-                  { x: 15, y: 80 },
-                ],
-              },
-              {
-                name: "مُسْتَطِيلٌ",
-                audioText: "مُسْتَطِيلٌ",
-                dots: [
-                  { x: 15, y: 30 },
-                  { x: 85, y: 30 },
-                  { x: 85, y: 70 },
-                  { x: 15, y: 70 },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          type: "color_shapes",
-          content: {
-            title: "لَوِّنِ الأَشْكَالَ",
-            instructions: "اِخْتَرْ لَوْنًا ثُمَّ اضْغَطْ عَلَى الشَّكْلِ الصَّحِيحِ",
-            colors: [
-              { name: "أَحْمَرُ", hex: "#ef4444", audioText: "أَحْمَرُ" },
-              { name: "أَزْرَقُ", hex: "#3b82f6", audioText: "أَزْرَقُ" },
-              { name: "أَخْضَرُ", hex: "#22c55e", audioText: "أَخْضَرُ" },
-              { name: "أَصْفَرُ", hex: "#facc15", audioText: "أَصْفَرُ" },
-            ],
-            objects: [
-              { name: "دَائِرَةٌ", kind: "circle", correctColor: "أَحْمَرُ" },
-              { name: "مُرَبَّعٌ", kind: "square", correctColor: "أَزْرَقُ" },
-              { name: "مُثَلَّثٌ", kind: "triangle", correctColor: "أَخْضَرُ" },
-              { name: "مُسْتَطِيلٌ", kind: "rectangle", correctColor: "أَصْفَرُ" },
-            ],
-          },
+          type: "shapes_lesson",
+          content: shapesLessonContent,
         },
       ],
     },
-    // All 28 Arabic letters — generated above.
-    ...letterLessons,
+    // Unified alphabet journey — covers all 28 Arabic letters with 5
+    // zones each (letter+tashkeel, vocabulary, color-letter, color-letter-
+    // in-word, find-words). Sole entry point for the alphabet since the
+    // legacy per-letter lessons were retired in the Phase 4 cleanup.
+    {
+      themeSlug: "arabic",
+      slug: "alphabet",
+      title: "الْأَبْجَدِيَّةُ الْعَرَبِيَّةُ",
+      description: "Explore all 28 Arabic letters in one gamified journey.",
+      icon: "🔤",
+      level: "basic",
+      order: 4,
+      sections: [
+        {
+          type: "alphabet_lesson",
+          content: alphabetLessonContent,
+        },
+      ],
+    },
     {
       themeSlug: "arabic",
       slug: "family",
@@ -755,7 +407,7 @@ async function main() {
       description: "Learn the names of your family members in Arabic.",
       icon: "👨‍👩‍👧‍👦",
       level: "basic",
-      order: 32,
+      order: 33,
       sections: [
         {
           type: "family_intro",
@@ -845,7 +497,7 @@ async function main() {
       description: "Explore animals grouped by their natural environments.",
       icon: "🐾",
       level: "basic",
-      order: 33,
+      order: 34,
       sections: [
         {
           type: "animal_world",
@@ -964,7 +616,7 @@ async function main() {
       description: "Explore the human body by hovering each part.",
       icon: "👤",
       level: "basic",
-      order: 34,
+      order: 35,
       sections: [
         {
           type: "body_map",
@@ -992,7 +644,7 @@ async function main() {
       description: "First-person pronouns in Arabic.",
       icon: "👤",
       level: "basic",
-      order: 35,
+      order: 36,
       sections: [
         {
           type: "pronoun_cards",
@@ -1051,7 +703,7 @@ async function main() {
       description: "Second-person pronouns in Arabic.",
       icon: "🗣️",
       level: "basic",
-      order: 36,
+      order: 37,
       sections: [
         {
           type: "pronoun_cards",
@@ -1115,7 +767,7 @@ async function main() {
       description: "Third-person pronouns in Arabic.",
       icon: "👀",
       level: "basic",
-      order: 37,
+      order: 38,
       sections: [
         {
           type: "pronoun_cards",

@@ -41,11 +41,6 @@ const ZONE_LABELS: Record<Section["type"], { label: string; icon: string }> = {
   interactive_shapes_world: { label: "Shape World", icon: "🔷" },
   draw_shapes: { label: "Draw Shapes", icon: "✏️" },
   color_shapes: { label: "Color Shapes", icon: "🎨" },
-  letter_intro: { label: "Meet the Letter", icon: "🔤" },
-  letter_vowels: { label: "Harakat Play", icon: "🎵" },
-  letter_coloring: { label: "Paint the Letter", icon: "🖍️" },
-  letter_tracing: { label: "Trace the Letter", icon: "✏️" },
-  letter_word_match: { label: "Word Friends", icon: "🐾" },
   family_intro: { label: "Meet the Family", icon: "👨‍👩‍👧‍👦" },
   family_tree: { label: "Family Tree", icon: "🌳" },
   family_match: { label: "Match Game", icon: "🎮" },
@@ -61,6 +56,15 @@ const ZONE_LABELS: Record<Section["type"], { label: string; icon: string }> = {
   // means a mixed-section lesson added one by mistake; show a neutral
   // fallback label rather than crash exhaustiveness.
   numbers_lesson: { label: "Number World", icon: "🔢" },
+  // `colors_lesson` renders via its own full-page orchestrator
+  // (ColorsLessonPage) and normally never routes through LessonAdventure,
+  // but a fallback label keeps the exhaustive check happy.
+  colors_lesson: { label: "Colors World", icon: "🌈" },
+  // Same story for `shapes_lesson` — routed via ShapesLessonPage in the
+  // dynamic route. Fallback label present only to satisfy exhaustiveness.
+  shapes_lesson: { label: "Shapes World", icon: "🔷" },
+  // And again for `alphabet_lesson` — rendered by AlphabetLessonPage.
+  alphabet_lesson: { label: "Alphabet Journey", icon: "🔤" },
 };
 
 export default function LessonAdventure({

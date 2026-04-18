@@ -3,6 +3,18 @@ import {
   NumbersLessonSectionSchema,
   type NumbersLessonSection,
 } from "@/lib/schemas/numbersLesson.schema";
+import {
+  ColorsLessonSectionSchema,
+  type ColorsLessonSection,
+} from "@/lib/schemas/colorsLesson.schema";
+import {
+  ShapesLessonSectionSchema,
+  type ShapesLessonSection,
+} from "@/lib/schemas/shapesLesson.schema";
+import {
+  AlphabetLessonSectionSchema,
+  type AlphabetLessonSection,
+} from "@/lib/schemas/alphabetLesson.schema";
 
 // Internal-path URL — must be a relative asset under the app root.
 // Rejects external origins and protocol-relative URLs to eliminate
@@ -229,69 +241,6 @@ export const ColorShapesSectionSchema = z
     { message: "every object.correctColor must match a defined color.name" },
   );
 
-// ---- Arabic alphabet lesson blocks -----------------------------------------
-
-// letter_intro — big letter + name + audio
-export const LetterIntroSectionSchema = z.object({
-  title: z.string().trim().min(1).max(200).optional(),
-  letter: z.string().trim().min(1).max(10),
-  name: z.string().trim().min(1).max(100),
-  audioText: z.string().trim().min(1).max(200).optional(),
-  transliteration: z.string().trim().min(1).max(100).optional(),
-});
-
-// letter_vowels — letter with harakat forms
-const VOWEL_KINDS = ["fatha", "kasra", "damma", "sukun"] as const;
-
-const VowelFormSchema = z.object({
-  form: z.string().trim().min(1).max(10),
-  vowel: z.enum(VOWEL_KINDS),
-  audioText: z.string().trim().min(1).max(200).optional(),
-});
-
-export const LetterVowelsSectionSchema = z.object({
-  title: z.string().trim().min(1).max(200).optional(),
-  instructions: z.string().trim().min(1).max(500).optional(),
-  letter: z.string().trim().min(1).max(10),
-  forms: z.array(VowelFormSchema).min(1).max(6),
-});
-
-// letter_coloring — big letter outline + color palette
-export const LetterColoringSectionSchema = z.object({
-  title: z.string().trim().min(1).max(200).optional(),
-  instructions: z.string().trim().min(1).max(500).optional(),
-  letter: z.string().trim().min(1).max(10),
-  colors: z.array(ColorShapePaletteSchema).min(2).max(10),
-});
-
-// letter_tracing — connect-the-dots guide to draw the letter
-const TracingPointSchema = z.object({
-  x: z.number().min(0).max(100),
-  y: z.number().min(0).max(100),
-});
-
-export const LetterTracingSectionSchema = z.object({
-  title: z.string().trim().min(1).max(200).optional(),
-  instructions: z.string().trim().min(1).max(500).optional(),
-  letter: z.string().trim().min(1).max(10),
-  points: z.array(TracingPointSchema).min(2).max(30),
-});
-
-// letter_word_match — vocabulary using the letter
-const WordExampleSchema = z.object({
-  word: z.string().trim().min(1).max(100),
-  letter: z.string().trim().min(1).max(10),
-  meaning: z.string().trim().min(1).max(100).optional(),
-  emoji: z.string().trim().min(1).max(8).optional(),
-  audioText: z.string().trim().min(1).max(200).optional(),
-});
-
-export const LetterWordMatchSectionSchema = z.object({
-  title: z.string().trim().min(1).max(200).optional(),
-  instructions: z.string().trim().min(1).max(500).optional(),
-  words: z.array(WordExampleSchema).min(1).max(20),
-});
-
 // ---- Family lesson blocks ---------------------------------------------------
 
 const FamilyMemberSchema = z.object({
@@ -499,11 +448,6 @@ export type InteractiveColorWorldSection = z.infer<typeof InteractiveColorWorldS
 export type InteractiveShapesWorldSection = z.infer<typeof InteractiveShapesWorldSectionSchema>;
 export type DrawShapesSection = z.infer<typeof DrawShapesSectionSchema>;
 export type ColorShapesSection = z.infer<typeof ColorShapesSectionSchema>;
-export type LetterIntroSection = z.infer<typeof LetterIntroSectionSchema>;
-export type LetterVowelsSection = z.infer<typeof LetterVowelsSectionSchema>;
-export type LetterColoringSection = z.infer<typeof LetterColoringSectionSchema>;
-export type LetterTracingSection = z.infer<typeof LetterTracingSectionSchema>;
-export type LetterWordMatchSection = z.infer<typeof LetterWordMatchSectionSchema>;
 export type FamilyIntroSection = z.infer<typeof FamilyIntroSectionSchema>;
 export type FamilyTreeSection = z.infer<typeof FamilyTreeSectionSchema>;
 export type FamilyMatchSection = z.infer<typeof FamilyMatchSectionSchema>;
@@ -538,16 +482,6 @@ export type Section =
     }
   | { id: string; order: number; type: "draw_shapes"; content: DrawShapesSection }
   | { id: string; order: number; type: "color_shapes"; content: ColorShapesSection }
-  | { id: string; order: number; type: "letter_intro"; content: LetterIntroSection }
-  | { id: string; order: number; type: "letter_vowels"; content: LetterVowelsSection }
-  | { id: string; order: number; type: "letter_coloring"; content: LetterColoringSection }
-  | { id: string; order: number; type: "letter_tracing"; content: LetterTracingSection }
-  | {
-      id: string;
-      order: number;
-      type: "letter_word_match";
-      content: LetterWordMatchSection;
-    }
   | { id: string; order: number; type: "family_intro"; content: FamilyIntroSection }
   | { id: string; order: number; type: "family_tree"; content: FamilyTreeSection }
   | { id: string; order: number; type: "family_match"; content: FamilyMatchSection }
@@ -573,6 +507,24 @@ export type Section =
       order: number;
       type: "numbers_lesson";
       content: NumbersLessonSection;
+    }
+  | {
+      id: string;
+      order: number;
+      type: "colors_lesson";
+      content: ColorsLessonSection;
+    }
+  | {
+      id: string;
+      order: number;
+      type: "shapes_lesson";
+      content: ShapesLessonSection;
+    }
+  | {
+      id: string;
+      order: number;
+      type: "alphabet_lesson";
+      content: AlphabetLessonSection;
     };
 
 export interface RawSectionRow {
@@ -659,31 +611,6 @@ export function parseSection(row: RawSectionRow): Section | null {
       if (!parsed.success) return null;
       return { id: row.id, order: row.order, type: "color_shapes", content: parsed.data };
     }
-    case "letter_intro": {
-      const parsed = LetterIntroSectionSchema.safeParse(row.content);
-      if (!parsed.success) return null;
-      return { id: row.id, order: row.order, type: "letter_intro", content: parsed.data };
-    }
-    case "letter_vowels": {
-      const parsed = LetterVowelsSectionSchema.safeParse(row.content);
-      if (!parsed.success) return null;
-      return { id: row.id, order: row.order, type: "letter_vowels", content: parsed.data };
-    }
-    case "letter_coloring": {
-      const parsed = LetterColoringSectionSchema.safeParse(row.content);
-      if (!parsed.success) return null;
-      return { id: row.id, order: row.order, type: "letter_coloring", content: parsed.data };
-    }
-    case "letter_tracing": {
-      const parsed = LetterTracingSectionSchema.safeParse(row.content);
-      if (!parsed.success) return null;
-      return { id: row.id, order: row.order, type: "letter_tracing", content: parsed.data };
-    }
-    case "letter_word_match": {
-      const parsed = LetterWordMatchSectionSchema.safeParse(row.content);
-      if (!parsed.success) return null;
-      return { id: row.id, order: row.order, type: "letter_word_match", content: parsed.data };
-    }
     case "family_intro": {
       const parsed = FamilyIntroSectionSchema.safeParse(row.content);
       if (!parsed.success) return null;
@@ -751,6 +678,36 @@ export function parseSection(row: RawSectionRow): Section | null {
         id: row.id,
         order: row.order,
         type: "numbers_lesson",
+        content: parsed.data,
+      };
+    }
+    case "colors_lesson": {
+      const parsed = ColorsLessonSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return {
+        id: row.id,
+        order: row.order,
+        type: "colors_lesson",
+        content: parsed.data,
+      };
+    }
+    case "shapes_lesson": {
+      const parsed = ShapesLessonSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return {
+        id: row.id,
+        order: row.order,
+        type: "shapes_lesson",
+        content: parsed.data,
+      };
+    }
+    case "alphabet_lesson": {
+      const parsed = AlphabetLessonSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return {
+        id: row.id,
+        order: row.order,
+        type: "alphabet_lesson",
         content: parsed.data,
       };
     }
