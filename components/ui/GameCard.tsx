@@ -1,6 +1,22 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+/**
+ * Planet card — each course track is a tappable little world.
+ *
+ * Anatomy:
+ *   - Atmospheric glow (pulses with the theme colour)
+ *   - Saturn-like rings (rotating slowly)
+ *   - Planet body — radial gradient + swirl overlay + hero glyph
+ *   - 3 orbiting moons, each carrying a theme glyph
+ *   - Sparkles in the surrounding space
+ *   - Title + tagline + star rating + lesson count + EXPLORE CTA
+ *
+ * The whole composition tilts in 3D toward the cursor on hover, and
+ * collapses to a still-pretty static planet under
+ * `prefers-reduced-motion`.
+ */
+
+import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useMemo } from "react";
 
@@ -13,203 +29,419 @@ export interface GameCardProps {
   level?: number;
   badge?: string;
   index?: number;
+  lessonsCount?: number;
 }
 
 interface ThemeStyle {
-  gradient: string;
+  /** Outer atmospheric halo colour. */
   glow: string;
+  /** Inline `radial-gradient` painting the planet body — light highlight → dark rim. */
+  surfaceGradient: string;
+  /** Secondary radial swirl overlaid for "stormy" surface depth. */
+  swirlGradient: string;
+  /** Saturn-ring colour (kept light against the dark planet). */
+  ringStroke: string;
+  /** Theme-spread base colour for stars / borders. */
   accent: string;
-  blob: string;
-  icon: React.ReactNode;
+  /** Big hero glyph painted on the planet's face. */
+  hero: React.ReactNode;
+  /** Tagline shown below the planet title. */
   tagline: string;
+  /** Three theme glyphs that orbit the planet as moons. */
+  moons: string[];
+  /** Star rating 1..3 (kid-readable difficulty signal). */
+  stars: number;
 }
 
 const THEME_STYLES: Record<ThemeSlug, ThemeStyle> = {
   arabic: {
-    gradient: "from-sky-400 via-indigo-500 to-fuchsia-500",
-    glow: "bg-sky-300/60",
-    accent: "text-sky-50",
-    blob: "M44.3,-58.2C56.2,-48.1,63.6,-32.8,66.8,-16.9C70,-1,68.9,15.5,61.6,28.7C54.3,41.9,40.8,51.8,25.9,58.2C11,64.6,-5.4,67.6,-20.8,63.8C-36.2,60,-50.6,49.4,-59.2,35.4C-67.8,21.4,-70.6,3.9,-66.4,-11.5C-62.2,-26.9,-51,-40.2,-37.7,-50.1C-24.4,-60,-12.2,-66.5,2.4,-69.7C17,-72.9,34,-68.3,44.3,-58.2Z",
-    icon: (
-      <span className="text-5xl drop-shadow-lg" aria-hidden>
+    glow: "bg-sky-400/60",
+    surfaceGradient:
+      "radial-gradient(circle at 30% 28%, #BAE6FD 0%, #38BDF8 30%, #4F46E5 60%, #312E81 100%)",
+    swirlGradient:
+      "radial-gradient(ellipse at 70% 70%, rgba(244, 114, 182, 0.55) 0%, rgba(99, 102, 241, 0) 55%)",
+    ringStroke: "#E0F2FE",
+    accent: "#38BDF8",
+    hero: (
+      <span
+        className="text-5xl font-black text-white drop-shadow-2xl"
+        style={{ fontFamily: '"Amiri", "Noto Naskh Arabic", serif' }}
+        dir="rtl"
+        lang="ar"
+        aria-hidden
+      >
         ا ب ت
       </span>
     ),
     tagline: "Letters, words & stories",
+    moons: ["✏️", "📚", "✨"],
+    stars: 1,
   },
   islamic: {
-    gradient: "from-emerald-400 via-teal-500 to-cyan-500",
-    glow: "bg-emerald-300/60",
-    accent: "text-emerald-50",
-    blob: "M39.6,-62.1C52.4,-54.6,64.9,-45.3,70.9,-32.8C76.9,-20.3,76.5,-4.6,72.8,9.9C69.1,24.4,62.1,37.6,51.6,47.9C41.1,58.2,27.1,65.5,11.7,69.1C-3.7,72.7,-20.5,72.6,-33.8,65.4C-47.1,58.2,-56.8,43.9,-62.8,28.6C-68.7,13.3,-70.9,-3,-66.5,-17.3C-62,-31.6,-50.9,-43.9,-37.9,-52.4C-24.8,-60.9,-9.8,-65.6,2.8,-69.6C15.3,-73.5,26.9,-69.7,39.6,-62.1Z",
-    icon: (
-      <span className="text-5xl drop-shadow-lg" aria-hidden>
+    glow: "bg-emerald-400/60",
+    surfaceGradient:
+      "radial-gradient(circle at 30% 28%, #A7F3D0 0%, #34D399 30%, #0D9488 60%, #064E3B 100%)",
+    swirlGradient:
+      "radial-gradient(ellipse at 70% 70%, rgba(34, 211, 238, 0.55) 0%, rgba(16, 185, 129, 0) 55%)",
+    ringStroke: "#D1FAE5",
+    accent: "#34D399",
+    hero: (
+      <span className="text-7xl drop-shadow-2xl" aria-hidden>
         ☪︎
       </span>
     ),
     tagline: "Values, stories & duas",
+    moons: ["🌙", "⭐", "🕌"],
+    stars: 2,
   },
   quran: {
-    gradient: "from-amber-400 via-orange-500 to-rose-500",
-    glow: "bg-amber-300/60",
-    accent: "text-amber-50",
-    blob: "M45.7,-67.8C58.3,-58.9,66.6,-43.8,70.2,-28.2C73.8,-12.6,72.6,3.6,67.6,18.3C62.6,33,53.8,46.2,41.7,55.6C29.6,65,14.8,70.7,-0.9,71.9C-16.5,73.2,-33,70,-44.9,60.3C-56.8,50.6,-64,34.3,-67.7,17.4C-71.3,0.5,-71.4,-17.1,-64.3,-30.6C-57.2,-44.1,-43,-53.6,-28.5,-62C-13.9,-70.5,1,-77.9,15.7,-76.3C30.4,-74.7,33.1,-76.7,45.7,-67.8Z",
-    icon: (
-      <span className="text-5xl drop-shadow-lg" aria-hidden>
+    glow: "bg-amber-400/60",
+    surfaceGradient:
+      "radial-gradient(circle at 30% 28%, #FEF3C7 0%, #FBBF24 30%, #F97316 60%, #9A3412 100%)",
+    swirlGradient:
+      "radial-gradient(ellipse at 70% 70%, rgba(244, 63, 94, 0.55) 0%, rgba(251, 191, 36, 0) 55%)",
+    ringStroke: "#FEF3C7",
+    accent: "#FBBF24",
+    hero: (
+      <span className="text-7xl drop-shadow-2xl" aria-hidden>
         ۞
       </span>
     ),
     tagline: "Memorize with Tajweed",
+    moons: ["📖", "🌟", "🤍"],
+    stars: 3,
   },
   others: {
-    gradient: "from-violet-400 via-purple-500 to-pink-500",
-    glow: "bg-violet-300/60",
-    accent: "text-violet-50",
-    blob: "M38.9,-61.3C50.8,-54.3,60.9,-43.5,67.3,-30.7C73.7,-17.9,76.3,-3.1,74.1,11.1C71.9,25.3,64.9,38.9,54.3,49.2C43.7,59.6,29.5,66.7,14.2,69.8C-1.1,73,-17.5,72.2,-32,66.2C-46.5,60.3,-59.1,49.1,-65.9,35.3C-72.6,21.5,-73.5,5,-70.2,-10.3C-66.9,-25.6,-59.4,-39.7,-48.2,-47.2C-37,-54.8,-22.1,-55.7,-8,-58C6.1,-60.3,27,-68.2,38.9,-61.3Z",
-    icon: (
-      <span className="text-5xl drop-shadow-lg" aria-hidden>
+    glow: "bg-violet-400/60",
+    surfaceGradient:
+      "radial-gradient(circle at 30% 28%, #DDD6FE 0%, #A78BFA 30%, #7C3AED 60%, #3B0764 100%)",
+    swirlGradient:
+      "radial-gradient(ellipse at 70% 70%, rgba(244, 114, 182, 0.55) 0%, rgba(139, 92, 246, 0) 55%)",
+    ringStroke: "#EDE9FE",
+    accent: "#A78BFA",
+    hero: (
+      <span className="text-7xl drop-shadow-2xl" aria-hidden>
         ✦
       </span>
     ),
     tagline: "Games, crafts & more",
+    moons: ["🎨", "🧩", "🎮"],
+    stars: 2,
   },
 };
 
-const FALLBACK: ThemeStyle = THEME_STYLES.others;
+const FALLBACK = THEME_STYLES.others;
 
 function pickStyle(slug: string): ThemeStyle {
   if (slug in THEME_STYLES) return THEME_STYLES[slug as ThemeSlug];
   return FALLBACK;
 }
 
-export default function GameCard({ id, name, slug, level = 1, badge, index = 0 }: GameCardProps) {
+const SPRING = { stiffness: 220, damping: 22, mass: 0.5 } as const;
+const TILT_AMPLITUDE_DEG = 10;
+const PLANET_SIZE = 220; // diameter in px
+
+export default function GameCard({
+  id,
+  name,
+  slug,
+  badge,
+  index = 0,
+  lessonsCount,
+}: GameCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const style = useMemo(() => pickStyle(slug), [slug]);
+  const planetIndex = (index % 3) + 1; // I / II / III roman label
 
-  // Slug is URL-safe (validated at the DB layer via regex on insert/seed).
-  // encodeURIComponent is belt-and-suspenders for any future non-ASCII slug.
   const href = `/dashboard/courses/${encodeURIComponent(slug)}`;
 
-  const floatAnim = prefersReducedMotion
-    ? {}
-    : {
-        y: [0, -8, 0],
-        rotate: [0, 1.5, 0, -1.5, 0],
-      };
+  /* --- 3D tilt: mouse-tracked rotation around the card centre. ---------- */
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const rotateX = useSpring(rawY, SPRING);
+  const rotateY = useSpring(rawX, SPRING);
+  const transform = useMotionTemplate`perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    rawX.set((px - 0.5) * 2 * TILT_AMPLITUDE_DEG);
+    rawY.set((py - 0.5) * -2 * TILT_AMPLITUDE_DEG);
+  };
+  const handleMouseLeave = () => {
+    rawX.set(0);
+    rawY.set(0);
+  };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.92 }}
+      initial={{ opacity: 0, y: 60, scale: 0.85 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ delay: index * 0.12, type: "spring", stiffness: 120, damping: 14 }}
-      whileHover={{ scale: 1.04, rotate: -1 }}
-      whileTap={{ scale: 0.97 }}
-      className="relative group select-none"
+      transition={{ delay: index * 0.18, type: "spring", stiffness: 110, damping: 14 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative group select-none flex flex-col items-center w-full max-w-xs"
     >
-    <Link
-      href={href}
-      aria-label={`Start learning ${name}`}
-      className="block rounded-[36px] focus:outline-none focus-visible:ring-4 focus-visible:ring-sky-300/70 focus-visible:ring-offset-2"
-    >
-      {/* Glow */}
-      <div
-        className={`absolute -inset-4 rounded-[40%] blur-3xl opacity-40 group-hover:opacity-80 transition-opacity duration-500 ${style.glow}`}
-        aria-hidden
-      />
-
-      {/* Floating card */}
+      {/* PLANET visual (top half of the card) */}
       <motion.div
-        animate={floatAnim}
-        transition={{ duration: 5 + index * 0.3, repeat: Infinity, ease: "easeInOut" }}
-        className={`relative overflow-hidden rounded-[36px] bg-gradient-to-br ${style.gradient} p-6 shadow-2xl shadow-black/20 ring-1 ring-white/30`}
+        className="relative"
+        style={{
+          width: PLANET_SIZE,
+          height: PLANET_SIZE,
+          transform,
+          transformStyle: "preserve-3d",
+        }}
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : { y: [0, -10, 0] }
+        }
+        transition={{ duration: 6 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
       >
-        {/* Organic blob backdrop */}
-        <svg
-          viewBox="-80 -80 160 160"
-          className="absolute -right-10 -top-10 h-48 w-48 opacity-30"
+        {/* Pulsing atmospheric halo */}
+        <motion.div
           aria-hidden
+          className={`absolute inset-0 rounded-full blur-3xl ${style.glow}`}
+          animate={
+            prefersReducedMotion
+              ? { opacity: 0.55 }
+              : { opacity: [0.45, 0.85, 0.45], scale: [1, 1.18, 1] }
+          }
+          transition={{ duration: 4 + index * 0.5, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Saturn-like rings — counter-rotating ellipse */}
+        <motion.svg
+          aria-hidden
+          viewBox="0 0 220 220"
+          className="absolute inset-0"
+          style={{ overflow: "visible" }}
+          animate={prefersReducedMotion ? undefined : { rotate: [0, -360] }}
+          transition={{ duration: 28 + index * 4, repeat: Infinity, ease: "linear" }}
         >
-          <path d={style.blob} fill="white" />
-        </svg>
+          {/* Outer ring */}
+          <ellipse
+            cx="110"
+            cy="110"
+            rx="135"
+            ry="32"
+            fill="none"
+            stroke={style.ringStroke}
+            strokeWidth="2.5"
+            strokeOpacity="0.7"
+          />
+          {/* Inner ring */}
+          <ellipse
+            cx="110"
+            cy="110"
+            rx="120"
+            ry="22"
+            fill="none"
+            stroke={style.ringStroke}
+            strokeWidth="1.5"
+            strokeOpacity="0.4"
+          />
+          {/* Ring particles */}
+          {[0, 90, 180, 270].map((deg, i) => {
+            const r = (deg * Math.PI) / 180;
+            const x = 110 + Math.cos(r) * 130;
+            const y = 110 + Math.sin(r) * 28;
+            return (
+              <circle
+                key={i}
+                cx={x}
+                cy={y}
+                r="2"
+                fill={style.ringStroke}
+                opacity="0.9"
+              />
+            );
+          })}
+        </motion.svg>
 
-        {/* Sparkles */}
-        {!prefersReducedMotion && (
-          <>
-            <motion.div
-              className="absolute top-4 right-6 text-2xl"
-              animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.1, 0.8] }}
-              transition={{ duration: 2.2, repeat: Infinity }}
-              aria-hidden
-            >
-              ✨
-            </motion.div>
-            <motion.div
-              className="absolute bottom-10 left-4 text-lg"
-              animate={{ opacity: [0.2, 0.9, 0.2], y: [0, -4, 0] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-              aria-hidden
-            >
-              ⭐
-            </motion.div>
-          </>
-        )}
-
-        {/* Badge */}
-        <div className="relative flex items-start justify-between">
+        {/* Planet body — slow rotation of the swirl overlay */}
+        <div
+          className="absolute inset-3 rounded-full shadow-2xl shadow-black/30 ring-2 ring-white/40"
+          style={{
+            background: style.surfaceGradient,
+            transform: "translateZ(20px)",
+          }}
+        >
+          {/* Swirl overlay rotates inside the body so the highlight stays put */}
           <motion.div
-            initial={{ rotate: -6 }}
-            whileHover={{ rotate: 0, scale: 1.1 }}
-            className="inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-gray-800 shadow-md"
-          >
-            <span aria-hidden>🏆</span>
-            {badge ?? `Level ${level}`}
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.2, rotate: 10 }}
-            className="rounded-2xl bg-white/25 p-3 backdrop-blur-sm ring-1 ring-white/40"
-          >
-            {style.icon}
-          </motion.div>
-        </div>
-
-        {/* Title */}
-        <div className="relative mt-14">
-          <h3 className={`text-2xl font-black tracking-tight text-white drop-shadow ${style.accent}`}>
-            {name}
-          </h3>
-          <p className="mt-1 text-sm font-medium text-white/90">{style.tagline}</p>
-        </div>
-
-        {/* Progress bar */}
-        <div className="relative mt-5">
-          <div className="h-2 w-full overflow-hidden rounded-full bg-white/30">
+            aria-hidden
+            className="absolute inset-0 rounded-full"
+            style={{ background: style.swirlGradient }}
+            animate={prefersReducedMotion ? undefined : { rotate: [0, 360] }}
+            transition={{ duration: 35 + index * 5, repeat: Infinity, ease: "linear" }}
+          />
+          {/* Bright crescent highlight (inner glow) */}
+          <div
+            aria-hidden
+            className="absolute inset-0 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle at 28% 26%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 35%)",
+            }}
+          />
+          {/* Hero glyph centred on the planet face */}
+          <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: `${20 + index * 15}%` }}
-              transition={{ delay: 0.3 + index * 0.1, duration: 0.9 }}
-              className="h-full rounded-full bg-white shadow-inner"
-            />
+              animate={prefersReducedMotion ? undefined : { y: [0, -3, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {style.hero}
+            </motion.div>
           </div>
         </div>
 
-        {/* CTA (visual only — the whole card is already a link) */}
-        <motion.span
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="relative mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-bold text-gray-800 shadow-lg ring-1 ring-black/5 transition-colors group-hover:bg-yellow-50"
-          data-theme-id={id}
-        >
-          Start Learning
-          <motion.span
-            aria-hidden
-            animate={prefersReducedMotion ? {} : { x: [0, 4, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity }}
-          >
-            →
-          </motion.span>
-        </motion.span>
+        {/* 3 orbiting moons */}
+        {!prefersReducedMotion &&
+          style.moons.map((moon, mi) => {
+            const orbitRadius = 110 + mi * 12; // 110, 122, 134
+            const orbitDuration = 9 + mi * 3; // 9s, 12s, 15s
+            const startAngle = mi * 120; // distribute around
+            return (
+              <motion.div
+                key={mi}
+                aria-hidden
+                className="absolute inset-0"
+                animate={{ rotate: [startAngle, startAngle + 360] }}
+                transition={{ duration: orbitDuration, repeat: Infinity, ease: "linear" }}
+                style={{ transform: "translateZ(40px)" }}
+              >
+                <motion.div
+                  className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-lg shadow-lg ring-2 ring-white"
+                  style={{ transform: `translate(-50%, -50%) translateY(-${orbitRadius}px)` }}
+                  // Counter-rotate so the glyph stays upright as the orbital ring spins.
+                  animate={{ rotate: [-startAngle, -startAngle - 360] }}
+                  transition={{ duration: orbitDuration, repeat: Infinity, ease: "linear" }}
+                >
+                  {moon}
+                </motion.div>
+              </motion.div>
+            );
+          })}
+
+        {/* Sparkles in the surrounding space */}
+        {!prefersReducedMotion && (
+          <>
+            <motion.span
+              className="absolute -top-4 left-6 text-2xl"
+              animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
+              transition={{ duration: 2.4, repeat: Infinity }}
+              aria-hidden
+            >
+              ✨
+            </motion.span>
+            <motion.span
+              className="absolute -bottom-2 right-8 text-xl"
+              animate={{ opacity: [0.2, 0.9, 0.2], y: [0, -4, 0] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 0.6 }}
+              aria-hidden
+            >
+              ⭐
+            </motion.span>
+            <motion.span
+              className="absolute top-12 -right-6 text-sm"
+              animate={{ opacity: [0.2, 0.7, 0.2], scale: [0.7, 1, 0.7] }}
+              transition={{ duration: 2.8, repeat: Infinity, delay: 1.2 }}
+              aria-hidden
+            >
+              ✦
+            </motion.span>
+          </>
+        )}
       </motion.div>
-    </Link>
+
+      {/* Card body below the planet — title, tagline, stars, CTA */}
+      <Link
+        href={href}
+        aria-label={`Explore the ${name} planet`}
+        className="mt-6 block w-full rounded-3xl focus:outline-none focus-visible:ring-4 focus-visible:ring-sky-300/70 focus-visible:ring-offset-2"
+      >
+        <motion.div
+          whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+          whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
+          className="relative rounded-3xl bg-white/85 px-5 py-5 text-center shadow-xl ring-1 ring-white/70 backdrop-blur-sm"
+        >
+          {/* Planet roman-numeral tag */}
+          <div
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] shadow-sm"
+            style={{ backgroundColor: `${style.accent}22`, color: style.accent }}
+          >
+            <span aria-hidden>🪐</span>
+            Planet {romanNumeral(planetIndex)}
+            {badge ? <span className="text-gray-600/80 normal-case tracking-normal"> · {badge}</span> : null}
+          </div>
+
+          {/* Title */}
+          <h3 className="mt-3 text-2xl font-black tracking-tight text-gray-900">
+            {name}
+          </h3>
+          <p className="mt-1 text-sm font-medium text-gray-600">{style.tagline}</p>
+
+          {/* Stars + lessons count row */}
+          <div className="mt-4 flex items-center justify-center gap-4">
+            <div className="flex items-center gap-1" aria-label={`${style.stars} of 3 stars`}>
+              {[0, 1, 2].map((s) => (
+                <motion.span
+                  key={s}
+                  aria-hidden
+                  className={`text-xl ${s < style.stars ? "text-amber-400" : "text-gray-200"}`}
+                  animate={
+                    prefersReducedMotion || s >= style.stars
+                      ? undefined
+                      : { scale: [1, 1.18, 1] }
+                  }
+                  transition={{ duration: 1.6, repeat: Infinity, delay: s * 0.2 }}
+                >
+                  ★
+                </motion.span>
+              ))}
+            </div>
+            {typeof lessonsCount === "number" && lessonsCount > 0 && (
+              <div className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-black text-gray-700">
+                <span aria-hidden>📚</span>
+                {lessonsCount} lesson{lessonsCount === 1 ? "" : "s"}
+              </div>
+            )}
+          </div>
+
+          {/* EXPLORE CTA with shimmer */}
+          <motion.span
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.04 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
+            className="relative mt-5 inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl px-4 py-3 text-sm font-black text-white shadow-lg ring-1 ring-black/10"
+            style={{ background: `linear-gradient(135deg, ${style.accent}, #1F2937)` }}
+            data-theme-id={id}
+          >
+            {!prefersReducedMotion && (
+              <motion.span
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 -left-full w-1/3 bg-gradient-to-r from-transparent via-white/70 to-transparent"
+                animate={{ x: ["0%", "350%"] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }}
+              />
+            )}
+            <span className="relative">EXPLORE</span>
+            <motion.span
+              aria-hidden
+              animate={prefersReducedMotion ? undefined : { x: [0, 5, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity }}
+              className="relative text-base"
+            >
+              🚀
+            </motion.span>
+          </motion.span>
+        </motion.div>
+      </Link>
     </motion.div>
   );
+}
+
+function romanNumeral(n: number): string {
+  return n === 1 ? "I" : n === 2 ? "II" : n === 3 ? "III" : `${n}`;
 }

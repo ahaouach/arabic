@@ -65,6 +65,12 @@ const ZONE_LABELS: Record<Section["type"], { label: string; icon: string }> = {
   shapes_lesson: { label: "Shapes World", icon: "🔷" },
   // And again for `alphabet_lesson` — rendered by AlphabetLessonPage.
   alphabet_lesson: { label: "Alphabet Journey", icon: "🔤" },
+  // `family_lesson` renders via its own orchestrator (FamilyLessonPage); this
+  // fallback is only hit if a mixed-section lesson accidentally embeds one.
+  family_lesson: { label: "Family Course", icon: "👨‍👩‍👧‍👦" },
+  // `vocabulary_lesson` renders via VocabularyLessonPage. Fallback present
+  // only to satisfy the exhaustive check over Section["type"].
+  vocabulary_lesson: { label: "Vocabulary Course", icon: "📚" },
 };
 
 export default function LessonAdventure({

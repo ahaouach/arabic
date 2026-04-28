@@ -18,9 +18,11 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^12.38.0",
     "jose": "^5.9.3",
+    "lucide-react": "^1.8.0",
     "next": "^16.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

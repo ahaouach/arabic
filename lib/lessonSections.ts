@@ -15,6 +15,14 @@ import {
   AlphabetLessonSectionSchema,
   type AlphabetLessonSection,
 } from "@/lib/schemas/alphabetLesson.schema";
+import {
+  FamilyLessonSectionSchema,
+  type FamilyLessonSection,
+} from "@/lib/schemas/familyLesson.schema";
+import {
+  VocabularyLessonSectionSchema,
+  type VocabularyLessonSection,
+} from "@/lib/schemas/vocabularyLesson.schema";
 
 // Internal-path URL — must be a relative asset under the app root.
 // Rejects external origins and protocol-relative URLs to eliminate
@@ -525,6 +533,18 @@ export type Section =
       order: number;
       type: "alphabet_lesson";
       content: AlphabetLessonSection;
+    }
+  | {
+      id: string;
+      order: number;
+      type: "family_lesson";
+      content: FamilyLessonSection;
+    }
+  | {
+      id: string;
+      order: number;
+      type: "vocabulary_lesson";
+      content: VocabularyLessonSection;
     };
 
 export interface RawSectionRow {
@@ -708,6 +728,26 @@ export function parseSection(row: RawSectionRow): Section | null {
         id: row.id,
         order: row.order,
         type: "alphabet_lesson",
+        content: parsed.data,
+      };
+    }
+    case "family_lesson": {
+      const parsed = FamilyLessonSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return {
+        id: row.id,
+        order: row.order,
+        type: "family_lesson",
+        content: parsed.data,
+      };
+    }
+    case "vocabulary_lesson": {
+      const parsed = VocabularyLessonSectionSchema.safeParse(row.content);
+      if (!parsed.success) return null;
+      return {
+        id: row.id,
+        order: row.order,
+        type: "vocabulary_lesson",
         content: parsed.data,
       };
     }

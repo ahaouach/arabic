@@ -40,6 +40,11 @@ import { prisma } from "@/lib/prisma";
 import { verifyToken, COOKIE_OPTIONS } from "@/lib/auth";
 import LessonAdventure from "@/components/ui/LessonAdventure";
 import NumbersLessonPage from "@/components/ui/numbers/NumbersLessonPage";
+import ColorsLessonPage from "@/components/ui/colors/ColorsLessonPage";
+import ShapesLessonPage from "@/components/ui/shapes/ShapesLessonPage";
+import AlphabetLessonPage from "@/components/ui/alphabet/AlphabetLessonPage";
+import FamilyLessonPage from "@/components/ui/family/FamilyLessonPage";
+import VocabularyLessonPage from "@/components/ui/vocabulary/VocabularyLessonPage";
 import { isLessonLevel, type LessonLevel } from "@/lib/lessonLevel";
 import { parseSection, type Section } from "@/lib/lessonSections";
 
@@ -173,6 +178,56 @@ export default async function LessonPage({
   if (only && only.type === "numbers_lesson") {
     return (
       <NumbersLessonPage
+        content={only.content}
+        theme={lesson.theme}
+        lessonTitle={lesson.title}
+        nextLesson={lesson.nextLesson}
+      />
+    );
+  }
+  if (only && only.type === "colors_lesson") {
+    return (
+      <ColorsLessonPage
+        content={only.content}
+        theme={lesson.theme}
+        lessonTitle={lesson.title}
+        nextLesson={lesson.nextLesson}
+      />
+    );
+  }
+  if (only && only.type === "shapes_lesson") {
+    return (
+      <ShapesLessonPage
+        content={only.content}
+        theme={lesson.theme}
+        lessonTitle={lesson.title}
+        nextLesson={lesson.nextLesson}
+      />
+    );
+  }
+  if (only && only.type === "alphabet_lesson") {
+    return (
+      <AlphabetLessonPage
+        content={only.content}
+        theme={lesson.theme}
+        lessonTitle={lesson.title}
+        nextLesson={lesson.nextLesson}
+      />
+    );
+  }
+  if (only && only.type === "family_lesson") {
+    return (
+      <FamilyLessonPage
+        content={only.content}
+        theme={lesson.theme}
+        lessonTitle={lesson.title}
+        nextLesson={lesson.nextLesson}
+      />
+    );
+  }
+  if (only && only.type === "vocabulary_lesson") {
+    return (
+      <VocabularyLessonPage
         content={only.content}
         theme={lesson.theme}
         lessonTitle={lesson.title}

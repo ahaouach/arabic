@@ -18,10 +18,12 @@ import { numbersLessonContent } from "./seeds/numbersLesson.seed";
 import { colorsLessonContent } from "./seeds/colorsLesson.seed";
 import { shapesLessonContent } from "./seeds/shapesLesson.seed";
 import { alphabetLessonContent } from "./seeds/alphabetLesson.seed";
+import { familyLessonContent } from "./seeds/familyLesson.seed";
 import type { NumbersLessonSection } from "@/lib/types/numbersLesson.types";
 import type { ColorsLessonSection } from "@/lib/types/colorsLesson.types";
 import type { ShapesLessonSection } from "@/lib/types/shapesLesson.types";
 import type { AlphabetLessonSection } from "@/lib/types/alphabetLesson.types";
+import type { FamilyLessonSection } from "@/lib/types/familyLesson.types";
 
 const prisma = new PrismaClient();
 
@@ -308,6 +310,10 @@ async function main() {
     | {
         type: "alphabet_lesson";
         content: AlphabetLessonSection;
+      }
+    | {
+        type: "family_lesson";
+        content: FamilyLessonSection;
       };
 
   interface LessonSeed {
@@ -400,93 +406,22 @@ async function main() {
         },
       ],
     },
+    // Enriched family course — single `family_lesson` section holding
+    // 11 members + pre-split words + 6 colours + 6 zone configs. The
+    // former 3-section (family_intro / family_tree / family_match)
+    // content was superseded by this richer 6-zone journey.
     {
       themeSlug: "arabic",
       slug: "family",
-      title: "العَائِلَةُ",
-      description: "Learn the names of your family members in Arabic.",
+      title: "الْعَائِلَةُ",
+      description: "Discover, listen, match, count, and paint family members.",
       icon: "👨‍👩‍👧‍👦",
       level: "basic",
       order: 33,
       sections: [
         {
-          type: "family_intro",
-          content: {
-            title: "أَفْرَادُ العَائِلَةِ",
-            instructions: "مَرِّرْ أَوِ اضْغَطْ عَلَى كُلِّ بِطَاقَةٍ لِتَسْمَعَ اسْمَهَا",
-            members: [
-              { name: "الأَبُ", emoji: "👨", audioText: "الأَبُ", meaning: "father" },
-              { name: "الأُمُّ", emoji: "👩", audioText: "الأُمُّ", meaning: "mother" },
-              { name: "الأَخُ", emoji: "🧑", audioText: "الأَخُ", meaning: "brother" },
-              { name: "الأُخْتُ", emoji: "👧", audioText: "الأُخْتُ", meaning: "sister" },
-              { name: "الجَدُّ", emoji: "👴", audioText: "الجَدُّ", meaning: "grandfather" },
-              { name: "الجَدَّةُ", emoji: "👵", audioText: "الجَدَّةُ", meaning: "grandmother" },
-            ],
-          },
-        },
-        {
-          type: "family_tree",
-          content: {
-            title: "شَجَرَةُ العَائِلَةِ",
-            instructions: "اِضْغَطْ عَلَى كُلِّ فَرْدٍ لِتَسْمَعَ اسْمَهُ",
-            nodes: [
-              { id: "grandfather", name: "الجَدُّ", emoji: "👴", audioText: "الجَدُّ", level: 0 },
-              { id: "grandmother", name: "الجَدَّةُ", emoji: "👵", audioText: "الجَدَّةُ", level: 0 },
-              { id: "father", name: "الأَبُ", emoji: "👨", audioText: "الأَبُ", level: 1, parents: ["grandfather", "grandmother"] },
-              { id: "mother", name: "الأُمُّ", emoji: "👩", audioText: "الأُمُّ", level: 1 },
-              { id: "brother", name: "الأَخُ", emoji: "🧑", audioText: "الأَخُ", level: 2, parents: ["father", "mother"] },
-              { id: "sister", name: "الأُخْتُ", emoji: "👧", audioText: "الأُخْتُ", level: 2, parents: ["father", "mother"] },
-            ],
-          },
-        },
-        {
-          type: "family_match",
-          content: {
-            title: "لُعْبَةُ المُطَابَقَةِ",
-            instructions: "اِسْمَعْ ثُمَّ اخْتَرِ الصُّورَةَ الصَّحِيحَةَ",
-            rounds: [
-              {
-                prompt: "الأُمُّ",
-                audioText: "الأُمُّ",
-                answer: "الأُمُّ",
-                options: [
-                  { name: "الأَبُ", emoji: "👨" },
-                  { name: "الأُمُّ", emoji: "👩" },
-                  { name: "الأُخْتُ", emoji: "👧" },
-                ],
-              },
-              {
-                prompt: "الأَبُ",
-                audioText: "الأَبُ",
-                answer: "الأَبُ",
-                options: [
-                  { name: "الجَدُّ", emoji: "👴" },
-                  { name: "الأَخُ", emoji: "🧑" },
-                  { name: "الأَبُ", emoji: "👨" },
-                ],
-              },
-              {
-                prompt: "الجَدَّةُ",
-                audioText: "الجَدَّةُ",
-                answer: "الجَدَّةُ",
-                options: [
-                  { name: "الأُمُّ", emoji: "👩" },
-                  { name: "الجَدَّةُ", emoji: "👵" },
-                  { name: "الأُخْتُ", emoji: "👧" },
-                ],
-              },
-              {
-                prompt: "الأَخُ",
-                audioText: "الأَخُ",
-                answer: "الأَخُ",
-                options: [
-                  { name: "الأَخُ", emoji: "🧑" },
-                  { name: "الأَبُ", emoji: "👨" },
-                  { name: "الجَدُّ", emoji: "👴" },
-                ],
-              },
-            ],
-          },
+          type: "family_lesson",
+          content: familyLessonContent,
         },
       ],
     },
