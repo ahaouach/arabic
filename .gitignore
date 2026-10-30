@@ -37,5 +37,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Generated TTS audio — reproducible from seed text, excluded from VCS
+/public/audio/*.mp3
+/public/audio/*.wav
+
 # Claude Code local settings
 .claude/
